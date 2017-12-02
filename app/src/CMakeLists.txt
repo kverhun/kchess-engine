@@ -4,4 +4,6 @@ add_executable(
     ChessApp main.cpp
              Piece.h
              Piece.cpp
+             Board.h
+             Board.cpp
 )
