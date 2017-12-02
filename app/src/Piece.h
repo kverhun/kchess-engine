@@ -16,7 +16,7 @@ namespace Chess
         
         const std::string& GetString() const;
     private:
-        const std::string m_string_representation;
+        std::string m_string_representation;
     
     };
 }

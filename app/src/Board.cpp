@@ -41,4 +41,14 @@ namespace Chess
         }
         return res;
     }
+
+    void Board::Move(const TPosition& i_from, const TPosition& i_to)
+    {
+        if (m_board_state.find(i_from) == m_board_state.end())
+            throw std::logic_error("No piece on \'from\' position");
+        
+        m_board_state.erase(i_to);
+        m_board_state.emplace(i_to, m_board_state.at(i_from));
+        m_board_state.erase(i_from);
+    }
 }
