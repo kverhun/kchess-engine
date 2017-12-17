@@ -3,9 +3,9 @@
 #include <string>
 
 #include "Board.h"
-#include "Piece.h"
-
 #include "CLI.h"
+
+#include <ChessLib/Piece.h>
 
 int main(int i_argc, char** ip_argv)
 {

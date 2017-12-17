@@ -28,5 +28,6 @@ target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
 
 set(CMAKE_CXX_STANDARD 14)
 
+add_subdirectory(ChessLib)
 add_subdirectory(app)
 add_subdirectory(unit_tests)
