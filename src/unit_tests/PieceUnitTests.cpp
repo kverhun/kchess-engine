@@ -37,3 +37,28 @@ TEST_CASE("ShouldCheckStringCorrectness")
         #undef SHOULD_BE_INCORRECT
     }
 }
+
+TEST_CASE("Should convert string to position")
+{
+    auto check_conversion = [](
+        short i_idx1, short i_idx2, const std::string& i_input)
+    {
+        const Chess::TPosition expected{i_idx1, i_idx2};
+        const auto conversion_result = Chess::PositionFromString(i_input);
+        return expected == conversion_result;
+    };
+
+    SECTION("Corners")
+    {
+        REQUIRE(check_conversion(0, 0, "a1"));
+        REQUIRE(check_conversion(7, 7, "h8"));
+        REQUIRE(check_conversion(7, 0, "a8"));
+        REQUIRE(check_conversion(0, 7, "h1"));
+    }
+
+    SECTION("Middle")
+    {
+        REQUIRE(check_conversion(3, 3, "d4"));
+        REQUIRE(check_conversion(4, 4, "e5"));
+    }
+}
