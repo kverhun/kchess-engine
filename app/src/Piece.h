@@ -7,6 +7,8 @@ namespace Chess
 {
     using TPosition = std::pair<short, short>;
     
+    bool CheckPositionString(const std::string& i_str);
+
     TPosition PositionFromString(const std::string& i_str);
 
     class Piece

@@ -2,9 +2,9 @@
 
 #include <stdexcept>
 
-namespace 
+namespace Chess
 {
-    bool _CheckPositionString(const std::string& i_str)
+    bool CheckPositionString(const std::string& i_str)
     {
         if (i_str.size() != 2)
             return false;
@@ -16,13 +16,10 @@ namespace
             return false;
         return true;
     }
-}
 
-namespace Chess
-{
     TPosition PositionFromString(const std::string& i_str)
     {
-        if (!_CheckPositionString(i_str))
+        if (!CheckPositionString(i_str))
             throw std::logic_error("Attempt to construct position from invalid string");
         const auto col = i_str[0];
         const auto col_converted = static_cast<short>(col - 'a');

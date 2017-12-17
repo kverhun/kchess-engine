@@ -5,12 +5,22 @@
 #include "Board.h"
 #include "Piece.h"
 
+#include "CLI.h"
+
 int main(int i_argc, char** ip_argv)
 {
     Chess::Board board{};
     std::cout << board.ToString();
 
-    board.Move(Chess::PositionFromString("e2"), Chess::PositionFromString("e4"));
+    for (int i = 0; i < 5; ++i)
+    {
+        Chess::TPosition from, to;
+        std::tie(from, to) = CLI::AskForMove();
+        board.Move(from, to);
+
+        std::cout << board.ToString() << '\n';
+    }
+
     std::cout << "\n\n" << board.ToString();
     return 0;
 }

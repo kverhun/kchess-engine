@@ -6,4 +6,6 @@ add_executable(
              Piece.cpp
              Board.h
              Board.cpp
+             CLI.h
+             CLI.cpp
 )
