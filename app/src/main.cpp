@@ -10,7 +10,7 @@ int main(int i_argc, char** ip_argv)
     Chess::Board board{};
     std::cout << board.ToString();
 
-    board.Move({'e',2}, {'e',4});
+    board.Move(Chess::PositionFromString("e2"), Chess::PositionFromString("e4"));
     std::cout << "\n\n" << board.ToString();
     return 0;
 }

@@ -5,8 +5,10 @@
 
 namespace Chess
 {
-    using TPosition = std::pair<char, unsigned short>;
+    using TPosition = std::pair<short, short>;
     
+    TPosition PositionFromString(const std::string& i_str);
+
     class Piece
     {
     public:
