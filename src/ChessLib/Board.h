@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ChessLib/Piece.h>
+#include "Piece.h"
 
 #include <map>
 

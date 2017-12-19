@@ -2,9 +2,9 @@
 #include <map>
 #include <string>
 
-#include "Board.h"
 #include "CLI.h"
 
+#include <ChessLib/Board.h>
 #include <ChessLib/Piece.h>
 
 int main(int i_argc, char** ip_argv)
