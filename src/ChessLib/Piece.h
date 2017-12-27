@@ -15,12 +15,15 @@ namespace Chess
     {
     public:
         Piece(const std::string& i_string_representation);
-        Piece(const Piece&) = default;
-        Piece& operator=(const Piece&) = default;
+        
+        Piece(const Piece&) = delete;
+        Piece& operator=(const Piece&) = delete;
+        Piece(Piece&&) = default;
+        Piece& operator = (Piece&&) = default;
         
         const std::string& GetString() const;
     private:
-        std::string m_string_representation;
+        const std::string m_string_representation;
     
     };
 }

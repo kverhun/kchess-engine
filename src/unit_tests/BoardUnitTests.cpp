@@ -9,3 +9,12 @@ TEST_CASE("ShouldCreateBoard")
         Chess::Board board;
     }
 }
+
+TEST_CASE("ShouldMovePieces")
+{
+    SECTION("MovePiece01")
+    {
+        Chess::Board board;
+        board.Move(Chess::PositionFromString("e2"), Chess::PositionFromString("e4"));
+    }
+}
