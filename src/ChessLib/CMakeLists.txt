@@ -8,4 +8,5 @@ add_library(
                     Board.cpp
                     Game.h
                     Game.cpp
+                    IPlayer.h
 )
