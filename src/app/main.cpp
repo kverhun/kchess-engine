@@ -16,7 +16,7 @@ int main(int i_argc, char** ip_argv)
     {
         Chess::TPosition from, to;
         std::tie(from, to) = CLI::AskForMove();
-        board.Move(from, to);
+        board.MakeMove({from, to});
 
         std::cout << board.ToString() << '\n';
     }

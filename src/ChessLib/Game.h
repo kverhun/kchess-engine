@@ -8,6 +8,7 @@ namespace Chess
     {
     public:
         Game() = default;
+
     private:
         Board m_board;
     };
