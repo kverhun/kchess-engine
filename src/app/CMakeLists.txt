@@ -4,6 +4,8 @@ add_executable(
     ChessApp main.cpp
              CLI.h
              CLI.cpp
+             PlayerCLI.h
+             PlayerCLI.cpp
 )
 
 target_link_libraries(
