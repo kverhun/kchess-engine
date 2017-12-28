@@ -1,12 +1,11 @@
 #pragma once
 
+#include "Common.h"
+
 #include <string>
-#include <utility>
 
 namespace Chess
 {
-    using TPosition = std::pair<short, short>;
-    
     bool CheckPositionString(const std::string& i_str);
 
     TPosition PositionFromString(const std::string& i_str);

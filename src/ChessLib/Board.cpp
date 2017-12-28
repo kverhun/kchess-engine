@@ -66,13 +66,13 @@ namespace Chess
         return res;
     }
 
-    void Board::Move(const TPosition& i_from, const TPosition& i_to)
+    void Board::MakeMove(const Move& i_move)
     {
-        if (m_board_state.find(i_from) == m_board_state.end())
+        if (m_board_state.find(i_move.m_from) == m_board_state.end())
             throw std::logic_error("No piece on \'from\' position");
     
-        m_board_state.erase(i_to);
-        m_board_state.emplace(i_to, std::move(m_board_state.at(i_from)));
-        m_board_state.erase(i_from);
+        m_board_state.erase(i_move.m_to);
+        m_board_state.emplace(i_move.m_to, std::move(m_board_state.at(i_move.m_from)));
+        m_board_state.erase(i_move.m_from);
     }
 }
