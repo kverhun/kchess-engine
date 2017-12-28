@@ -5,4 +5,6 @@ add_library(
                     Piece.cpp
                     Board.h
                     Board.cpp
+                    Game.h
+                    Game.cpp
 )
