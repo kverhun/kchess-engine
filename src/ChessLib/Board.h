@@ -6,10 +6,12 @@
 
 namespace Chess
 {
-    class Board
+    class CHESSLIB_API Board
     {
     public:
         Board();
+        Board(const Board&) = delete;
+        Board& operator=(const Board&) = delete;
 
         std::string ToString() const;
 

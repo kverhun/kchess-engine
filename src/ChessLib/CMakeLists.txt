@@ -10,3 +10,5 @@ add_library(
                     Game.cpp
                     IPlayer.h
 )
+
+target_compile_definitions(ChessLib PRIVATE CHESSLIB_EXPORT)
