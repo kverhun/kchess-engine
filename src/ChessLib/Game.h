@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ChesslibAPI.h"
 #include "Board.h"
 
 namespace Chess
