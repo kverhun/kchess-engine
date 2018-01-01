@@ -4,7 +4,7 @@
 
 namespace Chess
 {
-    class Game
+    class CHESSLIB_API Game
     {
     public:
         Game() = default;

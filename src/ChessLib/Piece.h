@@ -6,11 +6,11 @@
 
 namespace Chess
 {
-    bool CheckPositionString(const std::string& i_str);
+    bool CHESSLIB_API CheckPositionString(const std::string& i_str);
 
-    TPosition PositionFromString(const std::string& i_str);
+    TPosition CHESSLIB_API PositionFromString(const std::string& i_str);
 
-    class Piece
+    class CHESSLIB_API Piece
     {
     public:
         Piece(const std::string& i_string_representation);
