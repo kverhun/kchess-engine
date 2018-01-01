@@ -1,12 +1,8 @@
 #pragma once
 
-#include <utility>
+#include "ChesslibAPI.h"
 
-#ifdef CHESSLIB_EXPORT
-#define CHESSLIB_API __declspec(dllexport)
-#else
-#define CHESSLIB_API __declspec(dllimport)
-#endif
+#include <utility>
 
 namespace Chess
 {
