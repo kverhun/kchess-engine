@@ -9,6 +9,8 @@ namespace Chess
     {
     public:
         Game() = default;
+           
+        bool MakeMoveIfValid(const Move& i_move);
 
     private:
         Board m_board;
