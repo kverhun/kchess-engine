@@ -75,17 +75,7 @@ namespace Chess
         m_board_state.emplace(i_move.m_to, std::move(m_board_state.at(i_move.m_from)));
         m_board_state.erase(i_move.m_from);
     }
-    
-    std::unique_ptr<const Piece> Board::GetPieceOnPosition(const TPosition& i_position) const
-    {
-        using TPiecePtr = std::unique_ptr<const Piece, decltype(detail::PieceCustomDeleted)>;
 
-        auto piece_it = m_board_state.find(i_position);
-        if (piece_it == m_board_state.end())
-            return nullptr;
-
-        return nullptr;
-    }
 }
 
 void Chess::detail::PieceCustomDeleted(Piece *)
