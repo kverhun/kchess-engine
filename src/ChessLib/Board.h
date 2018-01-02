@@ -3,6 +3,12 @@
 #include "ChesslibAPI.h"
 #include "Piece.h"
 
+#include <experimental/optional>
+namespace std 
+{
+    using experimental::optional;
+}
+
 #include <map>
 #include <memory>
 
@@ -24,10 +30,8 @@ namespace Chess
 
         void MakeMove(const Move& i_move);
 
-        //using TPiecePtr = std::unique_ptr<Piece, decltype(detail::PieceCustomDeleted)>;
-        //TPiecePtr GetPieceOnPosition(const TPosition& i_position) const;
+        using PieceOpt = std::optional<std::reference_wrapper<Piece>>;
 
-        std::unique_ptr<const Piece> GetPieceOnPosition(const TPosition& i_position) const;
     private:
         std::map<TPosition, Piece> m_board_state;
     };

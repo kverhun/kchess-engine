@@ -1,16 +1,15 @@
 #pragma once
 
-#include "ChesslibAPI.h"
 #include "Board.h"
 
 namespace Chess
 {
-    class CHESSLIB_API Game
+    class Game
     {
     public:
         Game() = default;
-           
-        bool MakeMoveIfValid(const Move& i_move);
+        
+        bool MakeMoveIfAllowed(const Move& i_move);
 
     private:
         Board m_board;

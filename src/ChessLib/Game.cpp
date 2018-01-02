@@ -2,8 +2,8 @@
 
 namespace Chess
 {
-    bool Game::MakeMoveIfValid(const Move& i_move)
+    bool Game::MakeMoveIfAllowed(const Move& i_move)
     {
-        return false;
+        
     }
 }
