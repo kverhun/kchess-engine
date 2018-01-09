@@ -25,16 +25,16 @@ namespace Chess
         const auto col_converted = static_cast<short>(col - 'a');
         const auto row = i_str[1];
         const auto row_converted = static_cast<short>(row - '1');
-        return {row_converted, col_converted};
+        return { row_converted, col_converted };
     }
 
-	Piece::Piece(EColor i_color)
-		: m_color(i_color)
-	{}
+    Piece::Piece(EColor i_color)
+        : m_color(i_color)
+    {}
 
     Piece::Piece(const std::string& i_string_representation)
         : m_string_representation(i_string_representation)
-		, m_color(EColor::White)
+        , m_color(EColor::White)
     {}
 
     const std::string& Piece::GetString() const
@@ -42,10 +42,10 @@ namespace Chess
         return m_string_representation;
     }
 
-	const EColor Piece::GetColor() const
-	{
-		return m_color;
-	}
+    const EColor Piece::GetColor() const
+    {
+        return m_color;
+    }
 
     std::vector<TPosition> Piece::GetPossibleMoveTargets(
         const TPosition & i_from, const Board& i_board) const

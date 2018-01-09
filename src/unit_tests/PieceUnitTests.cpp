@@ -13,7 +13,7 @@ TEST_CASE("ShouldCheckStringCorrectness")
         {
             for (int row = 1; row <= 8; ++row)
             {
-                std::string position_str = {col};
+                std::string position_str = { col };
                 position_str.append(std::to_string(row));
                 REQUIRE(Chess::CheckPositionString(position_str));
             }
@@ -22,7 +22,7 @@ TEST_CASE("ShouldCheckStringCorrectness")
 
     SECTION("Incorrect positions")
     {
-        #define SHOULD_BE_INCORRECT(str) REQUIRE(!Chess::CheckPositionString((str)));
+#define SHOULD_BE_INCORRECT(str) REQUIRE(!Chess::CheckPositionString((str)));
 
         SHOULD_BE_INCORRECT("a0");
         SHOULD_BE_INCORRECT("ab");
@@ -33,8 +33,8 @@ TEST_CASE("ShouldCheckStringCorrectness")
         SHOULD_BE_INCORRECT("b");
         SHOULD_BE_INCORRECT("");
         SHOULD_BE_INCORRECT(" ");
-        
-        #undef SHOULD_BE_INCORRECT
+
+#undef SHOULD_BE_INCORRECT
     }
 }
 
@@ -43,7 +43,7 @@ TEST_CASE("Should convert string to position")
     auto check_conversion = [](
         short i_idx1, short i_idx2, const std::string& i_input)
     {
-        const Chess::TPosition expected{i_idx1, i_idx2};
+        const Chess::TPosition expected{ i_idx1, i_idx2 };
         const auto conversion_result = Chess::PositionFromString(i_input);
         return expected == conversion_result;
     };

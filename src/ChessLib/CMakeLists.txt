@@ -12,7 +12,7 @@ add_library(
                     IPlayer.h
                     Pieces.h
                     Pieces/Pawn.cpp
-					Pieces/Knight.cpp
+                    Pieces/Knight.cpp
 )
 
 target_include_directories(ChessLib PUBLIC ${CMAKE_CURRENT_LIST_DIR})
