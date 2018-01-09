@@ -1,10 +1,12 @@
 #pragma once
 
+#include "ChesslibAPI.h"
+
 #include "Board.h"
 
 namespace Chess
 {
-    class Game
+    class CHESSLIB_API Game
     {
     public:
         Game() = default;
