@@ -18,7 +18,7 @@ namespace
 	}
 }
 
-TEST_CASE("ShouldReturnCorrectMoveTargets")
+TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
 {
 	SECTION("StartMove_White")
 	{

@@ -36,10 +36,11 @@ namespace Chess
     {
         for (auto pos : _Convert({"a1", "h1", "a8", "h8"}))
             m_board_state.emplace(pos, _CreatePiece("R"));
-        for (auto pos : _Convert({"b1", "g1", "b8", "g8"}))
-            m_board_state.emplace(pos, _CreatePiece("N"));
-        for (auto pos : _Convert({"f1", "c1", "c8", "f8"}))
-            m_board_state.emplace(pos, _CreatePiece("B"));
+		for (auto pos : _Convert({ "b1", "g1", "b8", "g8" }))
+			m_board_state.emplace(pos, _CreatePiece("N"));
+        for (std::string pos : {"f1", "c1", "c8", "f8"})
+			m_board_state.emplace(PositionFromString(pos),
+				std::make_unique<Bishop>(pos[1] == '1' ? EColor::White : EColor::Black));
         for (auto pos : _Convert({"d1", "d8"}))
             m_board_state.emplace(pos, _CreatePiece("Q"));
         for (auto pos : _Convert({"e1", "e8"}))        
