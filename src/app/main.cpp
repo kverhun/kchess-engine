@@ -16,7 +16,7 @@ int main(int i_argc, char** ip_argv)
     PlayerCLI player_white;
     PlayerCLI player_black;
 
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 200; ++i)
     {
 		bool success;
 		do
