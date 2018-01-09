@@ -20,4 +20,12 @@ TEST_CASE("ShouldDisallowWrongMoves")
 		const bool allowed = game.MakeMoveIfAllowed(Move{ PositionFromString("e3"), PositionFromString("e4") });
 		REQUIRE_FALSE(allowed);
 	}
+
+	SECTION("ShouldDisallowMoveToSamePosition")
+	{
+		Chess::Game game;
+		const auto pos = PositionFromString("e2");
+		const bool allowed = game.MakeMoveIfAllowed(Move{pos, pos});
+		REQUIRE_FALSE(allowed);
+	}
 }
