@@ -26,6 +26,6 @@ namespace Chess
 		PieceOpt GetPiece(const TPosition& i_position) const;
 
     private:
-        std::map<TPosition, Piece> m_board_state;
+        std::map<TPosition, std::unique_ptr<const Piece>> m_board_state;
     };
 }

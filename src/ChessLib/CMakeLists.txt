@@ -10,6 +10,9 @@ add_library(
                     Game.h
                     Game.cpp
                     IPlayer.h
+                    Pieces.h
+                    Pieces/Pawn.cpp
 )
 
+target_include_directories(ChessLib PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 target_compile_definitions(ChessLib PRIVATE CHESSLIB_EXPORT)
