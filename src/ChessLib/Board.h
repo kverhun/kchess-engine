@@ -11,11 +11,6 @@
 
 namespace Chess
 {
-    namespace detail
-    {
-        void PieceCustomDeleted(Piece*);
-    }
-
     class CHESSLIB_API Board
     {
     public:
