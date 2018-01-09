@@ -3,11 +3,8 @@
 #include "ChesslibAPI.h"
 #include "Piece.h"
 
-#include <experimental/optional>
-namespace std 
-{
-    using experimental::optional;
-}
+
+#include <optional>
 
 #include <map>
 #include <memory>
