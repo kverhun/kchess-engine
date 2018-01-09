@@ -11,6 +11,7 @@ namespace Chess
     public:
         Game() = default;
         
+		const Board& GetBoard() const;
         bool MakeMoveIfAllowed(const Move& i_move);
 
     private:
