@@ -77,8 +77,3 @@ namespace Chess
     }
 
 }
-
-void Chess::detail::PieceCustomDeleted(Piece *)
-{
-    return;
-}
