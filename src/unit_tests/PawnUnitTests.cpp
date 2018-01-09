@@ -42,7 +42,7 @@ TEST_CASE("ShouldReturnCorrectMoveTargets")
 		REQUIRE(_Contains(black_possible_targets, PositionFromString("e5")));
 	}
 
-	SECTION("02")
+	SECTION("CaptureCheck_01")
 	{
 		Board board;
 		board.MakeMove(Move{ PositionFromString("e2"), PositionFromString("e4") });
@@ -53,5 +53,27 @@ TEST_CASE("ShouldReturnCorrectMoveTargets")
 		REQUIRE(2 == e4_targets.size());
 		REQUIRE(_Contains(e4_targets, PositionFromString("d5")));
 		REQUIRE(_Contains(e4_targets, PositionFromString("e5")));
+	}
+
+	SECTION("ShouldNotCaptureOwnPice")
+	{
+		Board board;
+		const auto e2 = PositionFromString("e2");
+		const auto e4 = PositionFromString("e4");
+		const auto d7 = PositionFromString("d7");
+		const auto d5 = PositionFromString("d5");
+		const auto f2 = PositionFromString("f2");
+		const auto f3 = PositionFromString("f3");
+		const auto g2 = PositionFromString("g2");
+		const auto g3 = PositionFromString("g3");
+
+		board.MakeMove({ e2, e4 });
+		board.MakeMove({ d7, d5 });
+		board.MakeMove({ f2, f3 });
+		board.MakeMove({ g2, g3 });
+		
+		const auto f3_targets = board.GetPiece(f3)->get()
+			.GetPossibleMoveTargets(f3, board);
+		REQUIRE_FALSE(_Contains(f3_targets, e4));
 	}
 }

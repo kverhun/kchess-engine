@@ -32,7 +32,7 @@ namespace Chess
 			TPosition{ i_from.first + move_direction, i_from.second + 1 } })
 		{
 			const auto capture = i_board.GetPiece(capture_target);
-			if (capture)
+			if (capture && capture->get().GetColor() != this->GetColor())
 				targets.push_back(capture_target);
 		}
 
