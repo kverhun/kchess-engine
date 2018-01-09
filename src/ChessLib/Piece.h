@@ -12,6 +12,12 @@ namespace Chess
 
     TPosition CHESSLIB_API PositionFromString(const std::string& i_str);
 
+	enum class EColor
+	{
+		White,
+		Black
+	};
+
     class Board;
 
     class CHESSLIB_API Piece
@@ -26,13 +32,16 @@ namespace Chess
         
         virtual const std::string& GetString() const;
 
+		const EColor GetColor() const;
+
         virtual std::vector<TPosition> GetPossibleMoveTargets(
             const TPosition& i_from, const Board& i_board) const;
 
 	protected:
-		Piece() = default;
+		Piece(EColor i_color);
 
     private:
+		const EColor m_color;
         const std::string m_string_representation;
     
     };

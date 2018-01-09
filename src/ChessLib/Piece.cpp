@@ -28,14 +28,24 @@ namespace Chess
         return {row_converted, col_converted};
     }
 
+	Piece::Piece(EColor i_color)
+		: m_color(i_color)
+	{}
+
     Piece::Piece(const std::string& i_string_representation)
         : m_string_representation(i_string_representation)
+		, m_color(EColor::White)
     {}
 
     const std::string& Piece::GetString() const
     {
         return m_string_representation;
     }
+
+	const EColor Piece::GetColor() const
+	{
+		return m_color;
+	}
 
     std::vector<TPosition> Piece::GetPossibleMoveTargets(
         const TPosition & i_from, const Board& i_board) const

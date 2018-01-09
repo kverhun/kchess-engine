@@ -45,9 +45,10 @@ namespace Chess
         for (auto pos : _Convert({"e1", "e8"}))        
             m_board_state.emplace(pos, _CreatePiece("K"));
         
-        for (auto row : {"2", "7"})
+        for (const std::string row : {"2", "7"})
             for (char col = 'a'; col <= 'h'; ++col)
-                m_board_state.emplace(Chess::PositionFromString(std::string(1, col) + row), std::make_unique<Pawn>());
+                m_board_state.emplace(Chess::PositionFromString(std::string(1, col) + row), 
+					std::make_unique<Pawn>(row == "2" ? EColor::White : EColor::Black));
     }
 
     std::string Board::ToString() const
