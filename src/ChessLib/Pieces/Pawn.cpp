@@ -18,15 +18,18 @@ namespace Chess
 		const TPosition& i_from, const Board& i_board) const
 	{
 		std::vector<TPosition> targets;
-		 
-		targets.emplace_back(i_from.first + 1, i_from.second);
 		
-		if (i_from.first == 1)
-			targets.emplace_back(i_from.first + 2, i_from.second);
+		const int move_direction = GetColor() == EColor::White ? +1 : -1;
+		const int start_position = GetColor() == EColor::White ? 1 : 6;
+
+		targets.emplace_back(i_from.first + move_direction, i_from.second);
+		
+		if (i_from.first == start_position)
+			targets.emplace_back(i_from.first + 2 * move_direction, i_from.second);
 		
 		for (const auto& capture_target : { 
-			TPosition{ i_from.first + 1, i_from.second - 1 }, 
-			TPosition{ i_from.first + 1, i_from.second + 1 } })
+			TPosition{ i_from.first + move_direction, i_from.second - 1 },
+			TPosition{ i_from.first + move_direction, i_from.second + 1 } })
 		{
 			const auto capture = i_board.GetPiece(capture_target);
 			if (capture)

@@ -20,15 +20,26 @@ namespace
 
 TEST_CASE("ShouldReturnCorrectMoveTargets")
 {
-	SECTION("01")
+	SECTION("StartMove_White")
 	{
 		Board board;
-		const auto pos = PositionFromString("e2");
-		const auto pawn = board.GetPiece(pos);
-		const auto possible_targets = pawn->get().GetPossibleMoveTargets(pos, board);
-		REQUIRE(2 == possible_targets.size());
-		REQUIRE(_Contains(possible_targets, PositionFromString("e3")));
-		REQUIRE(_Contains(possible_targets, PositionFromString("e4")));
+		const auto white_pos = PositionFromString("e2");
+		const auto white_pawn = board.GetPiece(white_pos);
+		const auto white_possible_targets = white_pawn->get().GetPossibleMoveTargets(white_pos, board);
+		REQUIRE(2 == white_possible_targets.size());
+		REQUIRE(_Contains(white_possible_targets, PositionFromString("e3")));
+		REQUIRE(_Contains(white_possible_targets, PositionFromString("e4")));
+	}
+
+	SECTION("StartMove_Black")
+	{
+		Board board;
+		const auto black_pos = PositionFromString("e7");
+		const auto black_pawn = board.GetPiece(black_pos);
+		const auto black_possible_targets = black_pawn->get().GetPossibleMoveTargets(black_pos, board);
+		REQUIRE(2 == black_possible_targets.size());
+		REQUIRE(_Contains(black_possible_targets, PositionFromString("e6")));
+		REQUIRE(_Contains(black_possible_targets, PositionFromString("e5")));
 	}
 
 	SECTION("02")
