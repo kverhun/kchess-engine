@@ -6,6 +6,7 @@ add_executable(
         BoardUnitTests.cpp
         PieceUnitTests.cpp
         GameUnitTests.cpp
+		PawnUnitTests.cpp
 )
 
 target_link_libraries(app_unit_tests PUBLIC ChessLib Catch)
