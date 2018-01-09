@@ -8,9 +8,15 @@ namespace
 	{
 		const auto piece = i_board.GetPiece(i_move.m_from);
 		if (piece)
-			return true;
-		else
-			return false;
+		{
+			const auto possible_targets = piece->get().GetPossibleMoveTargets(i_move.m_from, i_board);
+			if (std::find(possible_targets.begin(), possible_targets.end(),
+				i_move.m_to) != possible_targets.end())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

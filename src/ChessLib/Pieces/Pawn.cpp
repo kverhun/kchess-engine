@@ -14,13 +14,13 @@ namespace Chess
 	{
 		std::vector<TPosition> targets;
 		 
-		targets.emplace_back(i_from.first, i_from.second + 1);
+		targets.emplace_back(i_from.first + 1, i_from.second);
 		
-		if (i_from.second == 2)
-			targets.emplace_back(i_from.first, i_from.second + 2);
+		if (i_from.first == 1)
+			targets.emplace_back(i_from.first + 2, i_from.second);
 		
 		for (const auto& capture_target : { 
-			TPosition{ i_from.first - 1, i_from.second + 1 }, 
+			TPosition{ i_from.first + 1, i_from.second - 1 }, 
 			TPosition{ i_from.first + 1, i_from.second + 1 } })
 		{
 			const auto capture = i_board.GetPiece(capture_target);
