@@ -24,10 +24,13 @@ namespace Chess
         Piece(Piece&&) = default;
         Piece& operator = (Piece&&) = default;
         
-        const std::string& GetString() const;
+        virtual const std::string& GetString() const;
 
-        std::vector<TPosition> GetPossibleMoveTargets(
+        virtual std::vector<TPosition> GetPossibleMoveTargets(
             const TPosition& i_from, const Board& i_board) const;
+
+	protected:
+		Piece() = default;
 
     private:
         const std::string m_string_representation;

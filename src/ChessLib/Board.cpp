@@ -1,5 +1,7 @@
 #include "Board.h"
 
+#include "Pieces.h"
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>
@@ -9,6 +11,7 @@
 namespace
 {
     using Chess::TPosition;
+	using Chess::Piece;
 
     std::vector<TPosition> _Convert(const std::initializer_list<std::string>& i_input)
     {
@@ -21,6 +24,10 @@ namespace
         return res;
     }
 
+	std::unique_ptr<const Piece> _CreatePiece(const std::string& i_string)
+	{
+		return std::make_unique<Piece>(i_string);
+	}
 }
 
 namespace Chess
@@ -28,19 +35,19 @@ namespace Chess
     Board::Board()
     {
         for (auto pos : _Convert({"a1", "h1", "a8", "h8"}))
-            m_board_state.emplace(pos, Piece("R"));
+            m_board_state.emplace(pos, _CreatePiece("R"));
         for (auto pos : _Convert({"b1", "g1", "b8", "g8"}))
-            m_board_state.emplace(pos, Piece("N"));
+            m_board_state.emplace(pos, _CreatePiece("N"));
         for (auto pos : _Convert({"f1", "c1", "c8", "f8"}))
-            m_board_state.emplace(pos, Piece("B"));
+            m_board_state.emplace(pos, _CreatePiece("B"));
         for (auto pos : _Convert({"d1", "d8"}))
-            m_board_state.emplace(pos, Piece("Q"));
+            m_board_state.emplace(pos, _CreatePiece("Q"));
         for (auto pos : _Convert({"e1", "e8"}))        
-            m_board_state.emplace(pos, Piece("K"));
+            m_board_state.emplace(pos, _CreatePiece("K"));
         
         for (auto row : {"2", "7"})
             for (char col = 'a'; col <= 'h'; ++col)
-                m_board_state.emplace(Chess::PositionFromString(std::string(1, col) + row), Piece("p"));
+                m_board_state.emplace(Chess::PositionFromString(std::string(1, col) + row), std::make_unique<Pawn>());
     }
 
     std::string Board::ToString() const
@@ -51,7 +58,7 @@ namespace Chess
             for (auto r = 0; r < 8; ++r)
             {
                 if (m_board_state.find({c,r}) != m_board_state.end())
-                    text_board[{c,r}] = m_board_state.at({c,r}).GetString();
+                    text_board[{c,r}] = m_board_state.at({c,r})->GetString();
                 else
                     text_board[{c,r}] = "-";
             }
@@ -80,7 +87,7 @@ namespace Chess
 	{
 		auto piece_it = m_board_state.find(i_position);
 		if (piece_it != m_board_state.end())
-			return std::make_optional(std::ref(piece_it->second));
+			return std::make_optional(std::ref(*piece_it->second.get()));
 		else
 			return std::nullopt;
 	}
