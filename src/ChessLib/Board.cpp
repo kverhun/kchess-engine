@@ -76,4 +76,13 @@ namespace Chess
         m_board_state.erase(i_move.m_from);
     }
 
+	Board::PieceOpt Board::GetPiece(const TPosition& i_position) const
+	{
+		auto piece_it = m_board_state.find(i_position);
+		if (piece_it != m_board_state.end())
+			return std::make_optional(std::ref(piece_it->second));
+		else
+			return std::nullopt;
+	}
+
 }

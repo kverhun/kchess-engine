@@ -22,7 +22,8 @@ namespace Chess
 
         void MakeMove(const Move& i_move);
 
-        using PieceOpt = std::optional<std::reference_wrapper<Piece>>;
+        using PieceOpt = std::optional<std::reference_wrapper<const Piece>>;
+		PieceOpt GetPiece(const TPosition& i_position) const;
 
     private:
         std::map<TPosition, Piece> m_board_state;
