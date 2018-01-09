@@ -2,12 +2,29 @@
 
 #include <ChessLib/Board.h>
 
+using namespace Chess;
+
 TEST_CASE("ShouldCreateBoard")
 {
     SECTION("Creation")
     {
         Chess::Board board;
     }
+
+	SECTION("ShouldAssignColors")
+	{
+		Chess::Board board;
+		for (char row = 'a'; row <= 'h'; ++row)
+		{
+			const auto white_pawn = board.GetPiece(PositionFromString(
+				std::string(1, row) + "2"));
+			REQUIRE(EColor::White == white_pawn->get().GetColor());
+
+			const auto black_pawn = board.GetPiece(PositionFromString(
+				std::string(1, row) + "7"));
+			REQUIRE(EColor::Black == black_pawn->get().GetColor());
+		}
+	}
 }
 
 TEST_CASE("ShouldMovePieces")
@@ -21,7 +38,6 @@ TEST_CASE("ShouldMovePieces")
 
 TEST_CASE("ShouldReturnPieceOnPosition")
 {
-	using namespace Chess;
 	SECTION("EmptyCellsOnStart")
 	{
 		Chess::Board board;

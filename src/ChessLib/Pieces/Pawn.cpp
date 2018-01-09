@@ -4,6 +4,11 @@
 
 namespace Chess
 {
+	Pawn::Pawn(EColor i_color)
+		: Piece(i_color)
+	{
+	}
+
 	const std::string& Pawn::GetString() const
 	{
 		return "p";

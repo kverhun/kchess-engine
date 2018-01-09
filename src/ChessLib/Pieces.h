@@ -7,7 +7,7 @@ namespace Chess
 	class Pawn : public Piece
 	{
 	public:
-		Pawn() = default;
+		Pawn(EColor i_color);
 		~Pawn() = default;
 
 		const std::string& GetString() const override;
