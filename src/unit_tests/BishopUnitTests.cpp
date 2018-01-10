@@ -23,17 +23,24 @@ TEST_CASE("Bishop_ShouldReturnCorrectMoveTargets")
     SECTION("01")
     {
         Board board;
+
         const auto d2 = PositionFromString("d2");
         const auto d4 = PositionFromString("d4");
         const auto d7 = PositionFromString("d7");
         const auto d5 = PositionFromString("d5");
+        const auto c1 = PositionFromString("c1");
+
+        {
+            const auto c1_targets = board.GetPiece(c1)->get().GetPossibleMoveTargets(c1, board);
+            REQUIRE(c1_targets.empty());
+        }
 
         board.MakeMove({ d2, d4 });
         board.MakeMove({ d7, d5 });
 
-        const auto c1 = PositionFromString("c1");
-        const auto c1_targets = board.GetPiece(c1)->get().GetPossibleMoveTargets(c1, board);
-        REQUIRE(c1_targets.size() > 0);
-
+        {
+            const auto c1_targets = board.GetPiece(c1)->get().GetPossibleMoveTargets(c1, board);
+            REQUIRE_FALSE(5 == c1_targets.size());
+        }
     }
 }
