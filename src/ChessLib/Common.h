@@ -13,4 +13,6 @@ namespace Chess
         TPosition m_from;
         TPosition m_to;
     };
+
+    bool IsPositionOnBoard(const TPosition& i_pos);
 }

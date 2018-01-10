@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 add_library(
     ChessLib SHARED ChesslibAPI.h
                     Common.h
+                    Common.cpp
                     Piece.h
                     Piece.cpp
                     Board.h
@@ -12,6 +13,7 @@ add_library(
                     IPlayer.h
                     Pieces.h
                     Pieces/Pawn.cpp
+                    Pieces/Bishop.cpp
                     Pieces/Knight.cpp
 )
 

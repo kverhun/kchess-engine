@@ -6,12 +6,6 @@ using namespace Chess;
 
 namespace
 {
-    bool _IsPositionOnBoard(const TPosition& i_pos)
-    {
-        return i_pos.first >= 0 && i_pos.first <= 7
-            && i_pos.second >= 0 && i_pos.second <= 7;
-    }
-
     TPosition _ApplyShift(const TPosition& i_pos, const TPosition& i_shift)
     {
         return TPosition{ i_pos.first + i_shift.first, i_pos.second + i_shift.second };
@@ -21,7 +15,7 @@ namespace
     {
         std::vector<TPosition> res;
         res.push_back(i_pos);
-        while (_IsPositionOnBoard(_ApplyShift(res.back(), i_shift)))
+        while (Chess::IsPositionOnBoard(_ApplyShift(res.back(), i_shift)))
             res.push_back(_ApplyShift(res.back(), i_shift));
         return res;
     }
