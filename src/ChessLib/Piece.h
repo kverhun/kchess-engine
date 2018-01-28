@@ -12,12 +12,6 @@ namespace Chess
 
     TPosition CHESSLIB_API PositionFromString(const std::string& i_str);
 
-	enum class EColor
-	{
-		White,
-		Black
-	};
-
     class Board;
 
     class CHESSLIB_API Piece

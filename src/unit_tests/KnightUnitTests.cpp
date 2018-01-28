@@ -24,6 +24,8 @@ TEST_CASE("Knight_ShouldReturnCorrectMoveTargets")
     {
         Board board;
         const auto b1 = PositionFromString("b1");
-        REQUIRE(2 == board.GetPiece(b1)->get().GetPossibleMoveTargets(b1, board).size());
+        const auto& knight_piece = board.GetPiece(b1)->get();
+        const auto possible_move_targets = knight_piece.GetPossibleMoveTargets(b1, board);
+        REQUIRE(2 == possible_move_targets.size());
     }
 }

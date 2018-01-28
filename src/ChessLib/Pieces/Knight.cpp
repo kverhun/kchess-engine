@@ -32,9 +32,10 @@ namespace Chess
         targets.emplace_back(i_from.first - 2, i_from.second - 1);
 
         targets.erase(std::remove_if(targets.begin(), targets.end(),
-            [](const TPosition& i_pos) 
+            [&](const TPosition& i_pos) 
         {
-            return !Chess::IsPositionOnBoard(i_pos);
+            return !Chess::IsPositionOnBoard(i_pos) 
+                || Chess::IsPositionOccupied(i_board, i_pos, this->GetColor());
         }), targets.end());
 
         return targets;
