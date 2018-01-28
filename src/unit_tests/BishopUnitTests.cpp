@@ -40,7 +40,7 @@ TEST_CASE("Bishop_ShouldReturnCorrectMoveTargets")
 
         {
             const auto c1_targets = board.GetPiece(c1)->get().GetPossibleMoveTargets(c1, board);
-            REQUIRE_FALSE(5 == c1_targets.size());
+            REQUIRE(5 == c1_targets.size());
         }
     }
 }

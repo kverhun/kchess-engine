@@ -2,6 +2,8 @@
 
 #include "Board.h"
 
+#include <algorithm>
+
 using namespace Chess;
 
 namespace
@@ -65,6 +67,13 @@ namespace Chess
             for (const auto& pos : cut_diag)
                 res.push_back(pos);
         }
+
+        res.erase(std::remove_if(res.begin(), res.end(),
+            [&](const TPosition& i_pos)
+            {
+                return IsPositionOccupied(i_board, i_pos, this->GetColor());
+            }),
+            res.end());
         return res;
     }
 }
