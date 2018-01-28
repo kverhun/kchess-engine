@@ -11,7 +11,7 @@ TEST_CASE("ShouldCreateBoard")
         Chess::Board board;
     }
 
-    SECTION("ShouldAssignColors")
+    SECTION("ShouldAssignColors_Pawns")
     {
         Chess::Board board;
         for (char row = 'a'; row <= 'h'; ++row)
@@ -23,6 +23,21 @@ TEST_CASE("ShouldCreateBoard")
             const auto black_pawn = board.GetPiece(PositionFromString(
                 std::string(1, row) + "7"));
             REQUIRE(EColor::Black == black_pawn->get().GetColor());
+        }
+    }
+
+    SECTION("ShouldAssignColors_Pieces")
+    {
+        Chess::Board board;
+        for (char row = 'a'; row <= 'h'; ++row)
+        {
+            const auto white_piece = board.GetPiece(PositionFromString(
+                std::string(1, row) + "1"));
+            REQUIRE(EColor::White == white_piece->get().GetColor());
+
+            const auto black_piece = board.GetPiece(PositionFromString(
+                std::string(1, row) + "8"));
+            REQUIRE(EColor::Black == black_piece->get().GetColor());
         }
     }
 }
