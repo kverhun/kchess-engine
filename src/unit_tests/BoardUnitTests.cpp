@@ -75,7 +75,7 @@ TEST_CASE("ShouldReturnPieceOnPosition")
             {
                 const auto pos = PositionFromString(std::string(1, col) + std::to_string(row));
                 const auto piece_opt = board.GetPiece(pos);
-                REQUIRE(piece_opt.has_value());
+                REQUIRE(piece_opt.operator bool());
             }
     }
 
