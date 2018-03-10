@@ -4,7 +4,17 @@
 #include "Piece.h"
 
 
+#ifdef __APPLE__
+#include <experimental/optional>
+namespace std
+{
+    using experimental::optional;
+    using experimental::nullopt;
+    using experimental::make_optional;
+}
+#else
 #include <optional>
+#endif
 
 #include <map>
 #include <memory>
