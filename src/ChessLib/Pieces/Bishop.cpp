@@ -53,7 +53,8 @@ namespace Chess
 
     const std::string& Bishop::GetString() const
     {
-        return "B";
+        static const std::string g_bishop_str = "B";
+        return g_bishop_str;
     }
 
     std::vector<TPosition> Bishop::GetPossibleMoveTargets(

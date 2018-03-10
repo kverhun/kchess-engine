@@ -13,7 +13,8 @@ namespace Chess
 
     const std::string& Knight::GetString() const
     {
-        return "N";
+        static const std::string g_knight_str = "N";
+        return g_knight_str;
     }
 
     std::vector<TPosition> Knight::GetPossibleMoveTargets(
