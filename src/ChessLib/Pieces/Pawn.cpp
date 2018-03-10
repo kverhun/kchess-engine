@@ -11,7 +11,8 @@ namespace Chess
 
     const std::string& Pawn::GetString() const
     {
-        return "p";
+        static const std::string g_pawn_str = "p";
+        return g_pawn_str;
     }
 
     std::vector<TPosition> Pawn::GetPossibleMoveTargets(
