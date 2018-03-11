@@ -43,8 +43,9 @@ namespace Chess
         for (std::string pos : {"f1", "c1", "c8", "f8"})
             m_board_state.emplace(PositionFromString(pos),
                 std::make_unique<Bishop>(pos[1] == '1' ? EColor::White : EColor::Black));
-        for (auto pos : _Convert({ "d1", "d8" }))
-            m_board_state.emplace(pos, _CreatePiece("Q"));
+        for (auto pos : { "d1", "d8" })
+            m_board_state.emplace(PositionFromString(pos), 
+                std::make_unique<Queen>(pos[1] == '1' ? EColor::White : EColor::Black));
         for (auto pos : { "e1", "e8" })
             m_board_state.emplace(PositionFromString(pos),
                 std::make_unique<King>(pos[1] == '1' ? EColor::White : EColor::Black));
