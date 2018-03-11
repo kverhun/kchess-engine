@@ -15,6 +15,7 @@ add_library(
                     Pieces/Pawn.cpp
                     Pieces/Bishop.cpp
                     Pieces/Knight.cpp
+                    Pieces/Rook.cpp
 )
 
 target_include_directories(ChessLib PUBLIC ${CMAKE_CURRENT_LIST_DIR})

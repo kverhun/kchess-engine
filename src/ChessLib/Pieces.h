@@ -36,4 +36,15 @@ namespace Chess
         std::vector<TPosition> GetPossibleMoveTargets(
             const TPosition& i_from, const Board& i_board) const override;
     };
+
+    class Rook : public Piece
+    {
+    public:
+        Rook(EColor i_color);
+        ~Rook() = default;
+
+        const std::string& GetString() const override;
+        std::vector<TPosition> GetPossibleMoveTargets(
+            const TPosition& i_from, const Board& i_board) const override;
+    };
 }
