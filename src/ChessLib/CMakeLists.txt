@@ -12,9 +12,10 @@ add_library(
                     Game.cpp
                     IPlayer.h
                     Pieces.h
-                    Pieces/Pawn.cpp
                     Pieces/Bishop.cpp
+                    Pieces/King.cpp
                     Pieces/Knight.cpp
+                    Pieces/Pawn.cpp
                     Pieces/Rook.cpp
 )
 
