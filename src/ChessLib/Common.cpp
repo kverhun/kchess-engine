@@ -23,3 +23,32 @@ bool Chess::IsPositionOccupied(
     else
         return false;
 }
+
+TPositions Chess::GetRank(const TPosition& i_position)
+{
+    TPositions res;
+
+    for (short i = 0; i < 8; ++i)
+        res.emplace_back(i_position.first, i);
+
+    return res;
+}
+
+TPositions Chess::GetFile(const TPosition& i_position)
+{
+    TPositions res;
+
+    for (short i = 0; i < 8; ++i)
+        res.emplace_back(i, i_position.second);
+
+    return res;
+}
+
+std::pair<TPositions, TPositions> Chess::GetDiagonals(const TPosition& i_position)
+{
+    std::pair<TPositions, TPositions> res;
+    
+    // impl
+    
+    return res;
+}
