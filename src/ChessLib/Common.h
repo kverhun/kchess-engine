@@ -2,6 +2,7 @@
 
 #include "ChesslibAPI.h"
 
+#include <vector>
 #include <utility>
 
 namespace Chess

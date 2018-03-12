@@ -4,6 +4,23 @@
 
 using namespace Chess;
 
+namespace
+{
+    TPosition _ApplyShift(const TPosition& i_pos, const TPosition& i_shift)
+    {
+        return TPosition{ i_pos.first + i_shift.first, i_pos.second + i_shift.second };
+    }
+
+    std::vector<TPosition> _GenerateDiag(const TPosition& i_pos, const TPosition& i_shift)
+    {
+        std::vector<TPosition> res;
+        res.push_back(i_pos);
+        while (Chess::IsPositionOnBoard(_ApplyShift(res.back(), i_shift)))
+            res.push_back(_ApplyShift(res.back(), i_shift));
+        return res;
+    }
+}
+
 bool Chess::IsPositionOnBoard(const TPosition & i_pos)
 {
     return i_pos.first >= 0 && i_pos.first <= 7
@@ -47,8 +64,19 @@ TPositions Chess::GetFile(const TPosition& i_position)
 std::pair<TPositions, TPositions> Chess::GetDiagonals(const TPosition& i_position)
 {
     std::pair<TPositions, TPositions> res;
-    
-    // impl
-    
+
+    auto process_shift = [&](TPositions& io_target, const TPosition& i_shift)
+    {
+        const auto diag = _GenerateDiag(i_position, i_shift);
+        for (const auto& pos : diag)
+            io_target.push_back(pos);
+    };
+
+    process_shift(res.first, TPosition{1,1});
+    process_shift(res.first, TPosition{-1,-1});
+
+    process_shift(res.second, TPosition{1,-1});
+    process_shift(res.second, TPosition{-1,1});
+
     return res;
 }
