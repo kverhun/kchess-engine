@@ -11,6 +11,7 @@ namespace Chess
     bool CHESSLIB_API CheckPositionString(const std::string& i_str);
 
     TPosition CHESSLIB_API PositionFromString(const std::string& i_str);
+    std::string CHESSLIB_API PositionToString(const TPosition& i_pos);
 
     class Board;
 

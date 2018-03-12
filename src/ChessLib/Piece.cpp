@@ -28,6 +28,13 @@ namespace Chess
         return { row_converted, col_converted };
     }
 
+    std::string PositionToString(const TPosition& i_pos)
+    {
+        const char file = i_pos.second + 'a';
+        const char rank = i_pos.first + '1';
+        return std::string(1, file) + std::string(1, rank);
+    }
+
     Piece::Piece(EColor i_color)
         : m_color(i_color)
     {}
