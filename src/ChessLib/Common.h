@@ -28,4 +28,11 @@ namespace Chess
         const Board& i_board, 
         const TPosition& i_position, 
         EColor i_color);
+
+    using TPositions = std::vector<TPosition>;
+    
+    TPositions CHESSLIB_API GetRank(const TPosition& i_position);
+    TPositions CHESSLIB_API GetFile(const TPosition& i_position);
+    
+    std::pair<TPositions, TPositions> CHESSLIB_API GetDiagonals(const TPosition& i_position);
 }
