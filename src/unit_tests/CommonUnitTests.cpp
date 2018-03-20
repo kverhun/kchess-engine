@@ -85,3 +85,33 @@ TEST_CASE("GenerateRankTests")
     }
 }
 
+#include <iostream>
+TEST_CASE("GenerateFilesTests")
+{
+    SECTION("GenerateFiles-TestAllFiles")
+    {
+        for (char c = 'a'; c <= 'h'; ++c)
+        {
+            const auto file_str = std::string(1, c);
+            static const std::vector<std::string> rank_strs = {"1", "2", "3", "4", "5", "6", "7", "8"};
+            
+            for (std::string rank_str : rank_strs)
+            {
+                const auto pos_str = file_str + rank_str;
+                const auto res = Chess::GetFile(PositionFromString(pos_str));
+
+                const std::set<std::string> expected_res_strs = [&]()
+                {
+                    std::set<std::string> res;
+                    for (const auto& rank_str : rank_strs)
+                        res.insert(file_str + rank_str);
+                    return res;
+                }();
+
+                const auto actual_res_strs = _GetStringSetFromPositions(res);
+
+                REQUIRE(expected_res_strs == actual_res_strs);
+            }
+        }        
+    }
+}
