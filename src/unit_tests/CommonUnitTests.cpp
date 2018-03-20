@@ -59,8 +59,6 @@ TEST_CASE("GenerateRankTests")
 {
     SECTION("GenerateRank-TestAllRanks")
     {
-        Board board;
-
         for (int i = 1; i <= 8; ++i)
         {
             const auto rank_str = std::to_string(i);
@@ -83,9 +81,7 @@ TEST_CASE("GenerateRankTests")
                 REQUIRE(expected_res_strs == actual_res_strs);
                 
             }
-        }
-
-        
+        }        
     }
 }
 
