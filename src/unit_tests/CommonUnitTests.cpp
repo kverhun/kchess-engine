@@ -4,7 +4,20 @@
 #include <ChessLib/Board.h>
 #include <ChessLib/Piece.h>
 
+#include <set>
+
 using namespace Chess;
+
+namespace 
+{
+    std::set<std::string> _GetStringSetFromPositions(const TPositions& i_positions)
+    {
+        std::set<std::string> res;
+        for (const auto& p : i_positions)
+            res.insert(PositionToString(p));
+        return res;
+    }
+}
 
 TEST_CASE("IsPositionOccupied")
 {
@@ -44,9 +57,34 @@ TEST_CASE("PositionToStringTests")
 
 TEST_CASE("GenerateRankTests")
 {
-    SECTION("GenerateRank-01")
+    SECTION("GenerateRank-TestAllRanks")
     {
         Board board;
+
+        for (int i = 1; i <= 8; ++i)
+        {
+            const auto rank_str = std::to_string(i);
+            static const std::vector<std::string> file_strs = {"a", "b", "c", "d", "e", "f", "g", "h"};
+            
+            for (std::string file_str : file_strs)
+            {
+                const auto pos_str = file_str + rank_str;
+                const auto res = Chess::GetRank(PositionFromString(pos_str));
+
+                const std::set<std::string> expected_res_strs = [&]()
+                {
+                    std::set<std::string> res;
+                    for (const auto& file_str : file_strs)
+                        res.insert(file_str + rank_str);
+                    return res;
+                }();
+
+                const auto actual_res_strs = _GetStringSetFromPositions(res);
+                REQUIRE(expected_res_strs == actual_res_strs);
+                
+            }
+        }
+
         
     }
 }
