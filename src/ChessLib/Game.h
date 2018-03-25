@@ -9,7 +9,7 @@ namespace Chess
     class CHESSLIB_API Game
     {
     public:
-        Game() = default;
+        Game();
         
         const Board& GetBoard() const;
         bool MakeMoveIfAllowed(const Move& i_move);

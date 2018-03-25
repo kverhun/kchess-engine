@@ -22,7 +22,7 @@ TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
 {
     SECTION("StartMove_White")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         const auto white_pos = PositionFromString("e2");
         const auto white_pawn = board.GetPiece(white_pos);
         const auto white_possible_targets = white_pawn->get().GetPossibleMoveTargets(white_pos, board);
@@ -33,7 +33,7 @@ TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
 
     SECTION("StartMove_Black")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         const auto black_pos = PositionFromString("e7");
         const auto black_pawn = board.GetPiece(black_pos);
         const auto black_possible_targets = black_pawn->get().GetPossibleMoveTargets(black_pos, board);
@@ -44,7 +44,7 @@ TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
 
     SECTION("CaptureCheck_01")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         board.MakeMove(Move{ PositionFromString("e2"), PositionFromString("e4") });
         board.MakeMove(Move{ PositionFromString("d7"), PositionFromString("d5") });
 
@@ -57,7 +57,7 @@ TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
 
     SECTION("ShouldNotCaptureOwnPice")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         const auto e2 = PositionFromString("e2");
         const auto e4 = PositionFromString("e4");
         const auto d7 = PositionFromString("d7");

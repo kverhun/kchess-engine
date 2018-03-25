@@ -13,6 +13,8 @@ namespace Chess
     using TPosition = std::pair<short, short>;
 
     using TState = std::map<TPosition, char>;
+    
+    const TState& CHESSLIB_API GetInitialPosition();
 
     enum class EColor
     {

@@ -21,6 +21,29 @@ namespace
     }
 }
 
+const TState& Chess::GetInitialPosition()
+{
+    static const std::map<std::string, char> g_pos_to_char = {
+        {"a1", 'R'}, {"a2", 'P'}, /****/ {"a7", 'p'}, {"a8", 'r'},
+        {"b1", 'N'}, {"b2", 'P'}, /****/ {"b7", 'p'}, {"b8", 'n'},
+        {"c1", 'B'}, {"c2", 'P'}, /****/ {"c7", 'p'}, {"c8", 'b'},
+        {"d1", 'Q'}, {"d2", 'P'}, /****/ {"d7", 'p'}, {"d8", 'q'},
+        {"e1", 'K'}, {"e2", 'P'}, /****/ {"e7", 'p'}, {"e8", 'k'},
+        {"f1", 'B'}, {"f2", 'P'}, /****/ {"f7", 'p'}, {"f8", 'b'},
+        {"g1", 'N'}, {"g2", 'P'}, /****/ {"g7", 'p'}, {"g8", 'n'},
+        {"h1", 'R'}, {"h2", 'P'}, /****/ {"h7", 'p'}, {"h8", 'r'}
+
+    };
+    static const TState g_initial_position = [&]()
+    {
+        TState state;
+        for (const auto& e : g_pos_to_char)
+            state.insert({PositionFromString(std::string(e.first)), e.second});
+        return state;
+    }();
+    return g_initial_position;
+}
+
 bool Chess::IsPositionOnBoard(const TPosition & i_pos)
 {
     return i_pos.first >= 0 && i_pos.first <= 7

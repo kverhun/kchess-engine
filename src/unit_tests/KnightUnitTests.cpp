@@ -22,7 +22,7 @@ TEST_CASE("Knight_ShouldReturnCorrectMoveTargets")
 {
     SECTION("01")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         const auto b1 = PositionFromString("b1");
         const auto& knight_piece = board.GetPiece(b1)->get();
         const auto possible_move_targets = knight_piece.GetPossibleMoveTargets(b1, board);

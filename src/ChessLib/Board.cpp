@@ -32,28 +32,12 @@ namespace
 
 namespace Chess
 {
-    Board::Board()
+    Board::Board(const TState& i_state)
     {
-        for (auto pos : { "a1", "h1", "a8", "h8" })
-            m_board_state.emplace(PositionFromString(pos), 
-                std::make_unique<Rook>(pos[1] == '1' ? EColor::White : EColor::Black));
-        for (auto pos : { "b1", "g1", "b8", "g8" })
-            m_board_state.emplace(PositionFromString(pos), 
-                std::make_unique<Knight>(pos[1] == '1' ? EColor::White : EColor::Black));
-        for (auto pos : {"f1", "c1", "c8", "f8"})
-            m_board_state.emplace(PositionFromString(pos),
-                std::make_unique<Bishop>(pos[1] == '1' ? EColor::White : EColor::Black));
-        for (auto pos : { "d1", "d8" })
-            m_board_state.emplace(PositionFromString(pos), 
-                std::make_unique<Queen>(pos[1] == '1' ? EColor::White : EColor::Black));
-        for (auto pos : { "e1", "e8" })
-            m_board_state.emplace(PositionFromString(pos),
-                std::make_unique<King>(pos[1] == '1' ? EColor::White : EColor::Black));
-
-        for (const std::string row : {"2", "7"})
-            for (char col = 'a'; col <= 'h'; ++col)
-                m_board_state.emplace(Chess::PositionFromString(std::string(1, col) + row),
-                    std::make_unique<Pawn>(row == "2" ? EColor::White : EColor::Black));
+        for (const auto& entry : i_state)
+        {
+            m_board_state.emplace(entry.first, CreatePieceFromSingleLetter(entry.second));
+        }
     }
 
     std::string Board::ToString() const
