@@ -21,7 +21,7 @@ namespace Chess
     {
         std::vector<TPosition> targets;
 
-        const int ci = i_from.first;   // decltype(i_from) is std::pair<short, short>
+        const int ci = i_from.first;
         const int cj = i_from.second;
 
         for (auto i : {ci-1,ci,ci+1})
