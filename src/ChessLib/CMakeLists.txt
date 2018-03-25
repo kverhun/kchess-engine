@@ -18,6 +18,8 @@ add_library(
                     Pieces/Pawn.cpp
                     Pieces/Rook.cpp
                     Pieces/Queen.cpp
+                    ImportExportUtils.h
+                    ImportExportUtils.cpp
 )
 
 target_include_directories(ChessLib PUBLIC ${CMAKE_CURRENT_LIST_DIR})

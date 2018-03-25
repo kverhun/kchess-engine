@@ -10,6 +10,7 @@ add_executable(
         PawnUnitTests.cpp
         BishopUnitTests.cpp
         KnightUnitTests.cpp
+        ImportExportUtilsTests.cpp
 )
 
 target_link_libraries(app_unit_tests PUBLIC ChessLib Catch)
