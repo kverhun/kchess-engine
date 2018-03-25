@@ -13,8 +13,9 @@ namespace Chess
 
     const std::string& Knight::GetString() const
     {
-        static const std::string g_knight_str = "N";
-        return g_knight_str;
+        static const std::string g_knight_str_white = "N";
+        static const std::string g_knight_str_black = "n";
+        return GetColor() == EColor::White ? g_knight_str_white : g_knight_str_black;
     }
 
     std::vector<TPosition> Knight::GetPossibleMoveTargets(

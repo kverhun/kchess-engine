@@ -12,8 +12,9 @@ namespace Chess
 
     const std::string& Queen::GetString() const
     {
-        static const std::string g_queen_str = "Q";
-        return g_queen_str;
+        static const std::string g_queen_str_white = "Q";
+        static const std::string g_queen_str_black = "q";
+        return GetColor() == EColor::White ? g_queen_str_white : g_queen_str_black;
     }
 
     std::vector<TPosition> Queen::GetPossibleMoveTargets(

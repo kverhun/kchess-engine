@@ -11,8 +11,9 @@ namespace Chess
 
     const std::string& Pawn::GetString() const
     {
-        static const std::string g_pawn_str = "p";
-        return g_pawn_str;
+        static const std::string g_pawn_str_white = "P";
+        static const std::string g_pawn_str_black = "p";
+        return GetColor() == EColor::White ? g_pawn_str_white : g_pawn_str_black;
     }
 
     std::vector<TPosition> Pawn::GetPossibleMoveTargets(
