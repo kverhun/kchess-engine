@@ -85,7 +85,6 @@ TEST_CASE("GenerateRankTests")
     }
 }
 
-#include <iostream>
 TEST_CASE("GenerateFilesTests")
 {
     SECTION("GenerateFiles-TestAllFiles")
