@@ -13,4 +13,11 @@ TEST_CASE("TokenizeTest")
         const auto tokenize_result = TokenizeString(input_str, '/');
         REQUIRE(8 == tokenize_result.size());
     }
+
+    SECTION("Test02")
+    {
+        const std::string input_str = "RNBQKBNR w KQkq - 0 1";
+        const auto tokenize_result = TokenizeString(input_str, ' ');
+        REQUIRE(6 == tokenize_result.size());
+    }
 }
