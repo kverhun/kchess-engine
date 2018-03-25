@@ -2,6 +2,7 @@
 
 #include "ChesslibAPI.h"
 
+#include <map>
 #include <vector>
 #include <utility>
 
@@ -10,6 +11,8 @@ namespace Chess
     class Board;
 
     using TPosition = std::pair<short, short>;
+
+    using TState = std::map<TPosition, char>;
 
     enum class EColor
     {

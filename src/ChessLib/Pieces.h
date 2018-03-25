@@ -1,9 +1,12 @@
 #pragma once
 
+#include "ChessLibAPI.h"
 #include "Piece.h"
 
 namespace Chess
 {
+    std::unique_ptr<Piece> CHESSLIB_API CreatePieceFromSingleLetter(char i_letter);
+
     class Pawn : public Piece
     {
     public:
