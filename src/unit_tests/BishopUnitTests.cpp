@@ -22,7 +22,7 @@ TEST_CASE("Bishop_ShouldReturnCorrectMoveTargets")
 {
     SECTION("01")
     {
-        Board board;
+        Board board{GetInitialPosition()};
 
         const auto d2 = PositionFromString("d2");
         const auto d4 = PositionFromString("d4");

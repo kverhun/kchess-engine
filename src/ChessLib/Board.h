@@ -24,7 +24,7 @@ namespace Chess
     class CHESSLIB_API Board
     {
     public:
-        Board();
+        Board(const TState& i_state);
         Board(const Board&) = delete;
         Board& operator=(const Board&) = delete;
 

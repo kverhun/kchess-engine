@@ -8,12 +8,12 @@ TEST_CASE("ShouldCreateBoard")
 {
     SECTION("Creation")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
     }
 
     SECTION("ShouldAssignColors_Pawns")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
         for (char row = 'a'; row <= 'h'; ++row)
         {
             const auto white_pawn = board.GetPiece(PositionFromString(
@@ -28,7 +28,7 @@ TEST_CASE("ShouldCreateBoard")
 
     SECTION("ShouldAssignColors_Pieces")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
         for (char row = 'a'; row <= 'h'; ++row)
         {
             const auto white_piece = board.GetPiece(PositionFromString(
@@ -46,7 +46,7 @@ TEST_CASE("ShouldMovePieces")
 {
     SECTION("MovePiece01")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
         board.MakeMove({ Chess::PositionFromString("e2"), Chess::PositionFromString("e4") });
     }
 }
@@ -55,7 +55,7 @@ TEST_CASE("ShouldReturnPieceOnPosition")
 {
     SECTION("EmptyCellsOnStart")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
         const auto piece_opt = board.GetPiece(PositionFromString("e3"));
         for (char col = 'a'; col <= 'g'; ++col)
             for (int row = 3; row <= 6; ++row)
@@ -68,7 +68,7 @@ TEST_CASE("ShouldReturnPieceOnPosition")
 
     SECTION("OccupiedCellsOnStart")
     {
-        Chess::Board board;
+        Chess::Board board{GetInitialPosition()};
         const auto piece_opt = board.GetPiece(PositionFromString("e3"));
         for (char col = 'a'; col <= 'g'; ++col)
             for (int row : {1, 2, 7, 8})

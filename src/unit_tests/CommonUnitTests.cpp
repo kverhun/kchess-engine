@@ -23,7 +23,7 @@ TEST_CASE("IsPositionOccupied")
 {
     SECTION("IsPositionOccupied_01")
     {
-        Board board;
+        Board board{GetInitialPosition()};
         REQUIRE(Chess::IsPositionOccupied(board, PositionFromString("a1"), EColor::White));
         REQUIRE(Chess::IsPositionOccupied(board, PositionFromString("a2"), EColor::White));
         REQUIRE_FALSE(Chess::IsPositionOccupied(board, PositionFromString("a1"), EColor::Black));

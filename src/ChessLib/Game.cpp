@@ -22,6 +22,12 @@ namespace
 
 namespace Chess
 {
+    Game::Game()
+        : m_board(Chess::GetInitialPosition())
+    {
+
+    }
+
     const Board& Game::GetBoard() const
     {
         return m_board;
