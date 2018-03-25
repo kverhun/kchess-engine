@@ -58,8 +58,8 @@ namespace Chess
         const TPosition & i_from, const Board& i_board) const
     {
         std::vector<TPosition> res;
-        for (short row = 0; row <= 8; ++row)
-            for (short col = 0; col <= 8; ++col)
+        for (short row = 0; row < 8; ++row)
+            for (short col = 0; col < 8; ++col)
                 res.push_back(TPosition{ row, col });
         return res;
     }
