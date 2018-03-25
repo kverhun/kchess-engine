@@ -27,16 +27,16 @@ namespace Chess
         
         virtual const std::string& GetString() const;
 
-		const EColor GetColor() const;
+        const EColor GetColor() const;
 
         virtual std::vector<TPosition> GetPossibleMoveTargets(
             const TPosition& i_from, const Board& i_board) const;
 
-	protected:
-		Piece(EColor i_color);
+    protected:
+        Piece(EColor i_color);
 
     private:
-		const EColor m_color;
+        const EColor m_color;
         const std::string m_string_representation;
     
     };
