@@ -10,7 +10,7 @@
 
 int main(int i_argc, char** ip_argv)
 {
-	Chess::Game game;
+    Chess::Game game;
     std::cout << game.GetBoard().ToString();
 
     PlayerCLI player_white;
@@ -18,17 +18,17 @@ int main(int i_argc, char** ip_argv)
 
     for (int i = 0; i < 200; ++i)
     {
-		bool success;
-		do
-		{
-			const auto move = i % 2
-				? player_black.GetMove(game.GetBoard())
-				: player_white.GetMove(game.GetBoard());
-			success = game.MakeMoveIfAllowed(move);
-			if (!success)
-				std::cout << "Incorrect move" << std::endl;
-		} while (!success);
-	    std::cout << "\n\n" << game.GetBoard().ToString();
+        bool success;
+        do
+        {
+            const auto move = i % 2
+                ? player_black.GetMove(game.GetBoard())
+                : player_white.GetMove(game.GetBoard());
+            success = game.MakeMoveIfAllowed(move);
+            if (!success)
+                std::cout << "Incorrect move" << std::endl;
+        } while (!success);
+        std::cout << "\n\n" << game.GetBoard().ToString();
     }
 
     return 0;
