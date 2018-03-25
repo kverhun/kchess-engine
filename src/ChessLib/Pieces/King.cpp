@@ -12,8 +12,9 @@ namespace Chess
 
     const std::string& King::GetString() const
     {
-        static const std::string g_rook_str = "K";
-        return g_rook_str;
+        static const std::string g_king_str_white = "K";
+        static const std::string g_king_str_black = "k";
+        return GetColor() == EColor::White ? g_king_str_white : g_king_str_black;
     }
 
     std::vector<TPosition> King::GetPossibleMoveTargets(

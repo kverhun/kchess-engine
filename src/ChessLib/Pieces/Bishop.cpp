@@ -53,8 +53,9 @@ namespace Chess
 
     const std::string& Bishop::GetString() const
     {
-        static const std::string g_bishop_str = "B";
-        return g_bishop_str;
+        static const std::string g_bishop_str_white = "B";
+        static const std::string g_bishop_str_black = "b";
+        return GetColor() == EColor::White ? g_bishop_str_white : g_bishop_str_black;
     }
 
     std::vector<TPosition> Bishop::GetPossibleMoveTargets(

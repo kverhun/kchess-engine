@@ -12,8 +12,9 @@ namespace Chess
 
     const std::string& Rook::GetString() const
     {
-        static const std::string g_rook_str = "R";
-        return g_rook_str;
+        static const std::string g_rook_str_white = "R";
+        static const std::string g_rook_str_black = "r";
+        return GetColor() == EColor::White ? g_rook_str_white : g_rook_str_black;
     }
 
     std::vector<TPosition> Rook::GetPossibleMoveTargets(
