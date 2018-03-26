@@ -10,6 +10,7 @@ add_executable(
         PawnUnitTests.cpp
         BishopUnitTests.cpp
         KnightUnitTests.cpp
+        RookUnitTests.cpp
         ImportExportUtilsTests.cpp
 )
 
