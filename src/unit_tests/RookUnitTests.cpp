@@ -23,6 +23,12 @@ TEST_CASE("RookInitialPosition")
     SECTION("01")
     {
         Board board{GetInitialPosition()};
-        
+        for (const std::string rook_pos_str : {"a1", "h1", "a8", "h8"}) 
+        {    
+            const auto rook_pos = PositionFromString(rook_pos_str);
+            const auto rook = board.GetPiece(rook_pos);
+            const auto rook_targets = rook->get().GetPossibleMoveTargets(rook_pos, board);
+            REQUIRE(rook_targets.empty());
+        }
     }
 }
