@@ -44,7 +44,7 @@ TEST_CASE("RookInitialPosition")
             {"R7/8/8/8/8/8/8/8 w KQkq - 0 1", "a8"},
             {"7R/8/8/8/8/8/8/8 w KQkq - 0 1", "h8"},
             {"8/8/8/8/8/8/8/R7 w KQkq - 0 1", "a1"},
-            {"8/8/8/8/8/8/8/7R w KQkq - 0 1", "a8"}
+            {"8/8/8/8/8/8/8/7R w KQkq - 0 1", "h1"},
         };
         
         for (const auto& test_case : positions_to_test)
