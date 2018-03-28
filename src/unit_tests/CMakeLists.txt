@@ -11,6 +11,7 @@ add_executable(
         BishopUnitTests.cpp
         KnightUnitTests.cpp
         RookUnitTests.cpp
+        QueenUnitTests.cpp
         ImportExportUtilsTests.cpp
 )
 
