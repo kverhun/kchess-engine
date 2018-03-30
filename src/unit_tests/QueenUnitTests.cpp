@@ -35,30 +35,30 @@ TEST_CASE("QueenInitialPosition")
 }
 TEST_CASE("QueenEmptyBoard")
 {
+    SECTION("TestOnEmptyBoard1")
+    {
+        const size_t row_and_file = 14;
 
-    // SECTION("TestOnEmptyBoard1")
-    // {
-    //     std::map<std::string, std::string> positions_to_test = {
-    //         {"8/8/8/3R4/8/8/8/8 w KQkq - 0 1", "d5"},
-    //         {"8/8/8/1R6/8/8/8/8 w KQkq - 0 1", "b5"},
-    //         {"2R5/8/8/8/8/8/8/8 w KQkq - 0 1", "c8"},
-    //         {"8/8/8/8/8/8/7R/8 w KQkq - 0 1", "h2"},
-    //         {"8/8/8/R7/8/8/8/8 w KQkq - 0 1", "a5"},
-    //         {"R7/8/8/8/8/8/8/8 w KQkq - 0 1", "a8"},
-    //         {"7R/8/8/8/8/8/8/8 w KQkq - 0 1", "h8"},
-    //         {"8/8/8/8/8/8/8/R7 w KQkq - 0 1", "a1"},
-    //         {"8/8/8/8/8/8/8/7R w KQkq - 0 1", "h1"},
-    //     };
+        std::map<std::pair<std::string, std::string>, size_t> positions_to_test = {
+            {{"8/8/8/3R4/8/8/8/8 w KQkq - 0 1", "d5"}, 8+8+8+7-4}//,
+            // {{"8/8/8/1R6/8/8/8/8 w KQkq - 0 1", "b5"}, 1},
+            // {{"2R5/8/8/8/8/8/8/8 w KQkq - 0 1", "c8"}, 1},
+            // {{"8/8/8/8/8/8/7R/8 w KQkq - 0 1", "h2"}, 1},
+            // {{"8/8/8/R7/8/8/8/8 w KQkq - 0 1", "a5"}, 1},
+            // {{"R7/8/8/8/8/8/8/8 w KQkq - 0 1", "a8"}, 1},
+            // {{"7R/8/8/8/8/8/8/8 w KQkq - 0 1", "h8"}, 1},
+            // {{"8/8/8/8/8/8/8/R7 w KQkq - 0 1", "a1"}, 1},
+            // {{"8/8/8/8/8/8/8/7R w KQkq - 0 1", "h1"}, 1}
+        };
         
-    //     for (const auto& test_case : positions_to_test)
-    //     {
-    //         const std::string fen_string = test_case.first;
-    //         const auto rook_pos = PositionFromString(test_case.second);
-    //         Board board{IO::FENStringToState(fen_string)};
-    //         const auto& rook = board.GetPiece(rook_pos)->get();
-    //         const auto rook_move_targets = rook.GetPossibleMoveTargets(rook_pos, board);
-    //         REQUIRE(14 == rook_move_targets.size());
-    //     }
-    // }
-
+        for (const auto& test_case : positions_to_test)
+        {
+            const std::string fen_string = test_case.first.first;
+            const auto rook_pos = PositionFromString(test_case.first.second);
+            Board board{IO::FENStringToState(fen_string)};
+            const auto& rook = board.GetPiece(rook_pos)->get();
+            const auto rook_move_targets = rook.GetPossibleMoveTargets(rook_pos, board);
+            REQUIRE(test_case.second == rook_move_targets.size());
+        }
+    }
 }
