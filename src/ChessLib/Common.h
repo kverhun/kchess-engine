@@ -41,4 +41,8 @@ namespace Chess
     TPositions CHESSLIB_API GetFile(const TPosition& i_position);
     
     std::pair<TPositions, TPositions> CHESSLIB_API GetDiagonals(const TPosition& i_position);
+
+    TPositions GoInDiretionWhilePredicate(
+        const TPosition& i_from, const TPosition& i_direction,
+        std::function<bool(const TPosition&)> i_predicate);
 }
