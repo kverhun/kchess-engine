@@ -116,6 +116,7 @@ TEST_CASE("GenerateFilesTests")
         }        
     }
 }
+#include <iostream>
 
 TEST_CASE("GoInDiretionWhilePossible")
 {
@@ -124,5 +125,8 @@ TEST_CASE("GoInDiretionWhilePossible")
         const std::string pos_str = "8/8/8/3Q4/8/8/8/8 w KQkq - 0 1";
         const auto pos = Chess::IO::FENStringToState(pos_str);
         Board board{pos};
+        const TPosition shift_1{1,1};
+        const auto res = GoInDiretionWhilePossible(PositionFromString("d5"), shift_1, board, EColor::White);
+        REQUIRE(3 == res.size());
     }
 }

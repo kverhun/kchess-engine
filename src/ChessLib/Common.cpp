@@ -118,7 +118,7 @@ TPositions Chess::GoInDiretionWhilePossible(
 {
     auto plus = [](const TPosition& i_pos, const TPosition& i_shift)
     {
-        return TPosition{i_pos.first + i_shift.first, i_pos.second + i_pos.second};
+        return TPosition{i_pos.first + i_shift.first, i_pos.second + i_shift.second};
     };
 
     TPositions res;
