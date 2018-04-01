@@ -116,7 +116,7 @@ TPositions Chess::GoInDiretionWhilePredicate(
     TPositions res;
 
     TPosition current_pos = plus(i_from, i_direction);
-    while(i_predicate(current_pos))
+    while(Chess::IsPositionOnBoard(current_pos) && i_predicate(current_pos))
     {
         res.push_back(current_pos);
         current_pos = plus(current_pos, i_direction);
