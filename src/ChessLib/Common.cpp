@@ -19,6 +19,14 @@ namespace
             res.push_back(_ApplyShift(res.back(), i_shift));
         return res;
     }
+
+    EColor _GetOppositeColor(const EColor& i_color)
+    {
+        if (i_color == EColor::White)
+            return EColor::Black;
+        else 
+            return EColor::White;
+    }
 }
 
 const TState& Chess::GetInitialPosition()
@@ -104,9 +112,9 @@ std::pair<TPositions, TPositions> Chess::GetDiagonals(const TPosition& i_positio
     return res;
 }
 
-TPositions Chess::GoInDiretionWhilePredicate(
-    const TPosition &i_from, const TPosition &i_direction,
-    std::function<bool(const TPosition &)> i_predicate)
+TPositions Chess::GoInDiretionWhilePossible(
+    const TPosition &i_from, const TPosition &i_direction, 
+    const Chess::Board& i_board, Chess::EColor i_color)
 {
     auto plus = [](const TPosition& i_pos, const TPosition& i_shift)
     {
@@ -116,9 +124,11 @@ TPositions Chess::GoInDiretionWhilePredicate(
     TPositions res;
 
     TPosition current_pos = plus(i_from, i_direction);
-    while(Chess::IsPositionOnBoard(current_pos) && i_predicate(current_pos))
+    while(Chess::IsPositionOnBoard(current_pos) && !IsPositionOccupied(i_board, current_pos, i_color))
     {
         res.push_back(current_pos);
+        if (IsPositionOccupied(i_board, current_pos, _GetOppositeColor(i_color)))
+            break;
         current_pos = plus(current_pos, i_direction);
     }
 
