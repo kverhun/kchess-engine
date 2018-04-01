@@ -40,7 +40,7 @@ TEST_CASE("QueenEmptyBoard")
         const size_t row_and_file = 14;
 
         std::map<std::pair<std::string, std::string>, size_t> positions_to_test = {
-            {{"8/8/8/3R4/8/8/8/8 w KQkq - 0 1", "d5"}, 8+8+8+7-4}//,
+            {{"8/8/8/3Q4/8/8/8/8 w KQkq - 0 1", "d5"}, 8+8+8+7-4}//,
             // {{"8/8/8/1R6/8/8/8/8 w KQkq - 0 1", "b5"}, 1},
             // {{"2R5/8/8/8/8/8/8/8 w KQkq - 0 1", "c8"}, 1},
             // {{"8/8/8/8/8/8/7R/8 w KQkq - 0 1", "h2"}, 1},

@@ -59,11 +59,16 @@ namespace Chess
                 break;
         }
 
-        std::set<TPosition> shifts_diag = {
+        std::set<TPosition> shift_diags = {
             TPosition{1,1}, TPosition{1,-1}, TPosition{-1,1}, TPosition{-1,-1}
         };
 
-
+        for (const auto shift_diag : shift_diags)
+        {
+            const auto positions = GoInDiretionWhilePossible(i_from, shift_diag, i_board, GetColor());
+            for (const auto& pos : positions)
+                targets.push_back(pos);
+        }
 
         return targets;
     }
