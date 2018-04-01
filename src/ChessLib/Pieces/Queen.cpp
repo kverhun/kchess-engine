@@ -3,6 +3,8 @@
 #include "Board.h"
 #include "Common.h"
 
+#include <set>
+
 namespace Chess
 {
     Queen::Queen(EColor i_color)
@@ -57,7 +59,9 @@ namespace Chess
                 break;
         }
 
-        
+        std::set<TPosition> shifts_diag = {
+            TPosition{1,1}, TPosition{1,-1}, TPosition{-1,1}, TPosition{-1,-1}
+        };
 
 
 
