@@ -103,3 +103,25 @@ std::pair<TPositions, TPositions> Chess::GetDiagonals(const TPosition& i_positio
 
     return res;
 }
+
+TPositions Chess::GoInDiretionWhilePredicate(
+    const TPosition &i_from, const TPosition &i_direction,
+    std::function<bool(const TPosition &)> i_predicate)
+{
+    auto plus = [](const TPosition& i_pos, const TPosition& i_shift)
+    {
+        return TPosition{i_pos.first + i_shift.first, i_pos.second + i_pos.second};
+    };
+
+    TPositions res;
+
+    TPosition current_pos = plus(i_from, i_direction);
+    while(i_predicate(current_pos))
+    {
+        res.push_back(current_pos);
+        current_pos = plus(current_pos, i_direction);
+    }
+
+    return res;
+}
+
