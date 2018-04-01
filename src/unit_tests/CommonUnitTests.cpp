@@ -116,7 +116,6 @@ TEST_CASE("GenerateFilesTests")
         }        
     }
 }
-#include <iostream>
 
 TEST_CASE("GoInDiretionWhilePossible")
 {
