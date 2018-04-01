@@ -3,6 +3,8 @@
 #include <ChessLib/Common.h>
 #include <ChessLib/Board.h>
 #include <ChessLib/Piece.h>
+#include <ChessLib/ImportExportUtils.h>
+
 
 #include <set>
 
@@ -112,5 +114,15 @@ TEST_CASE("GenerateFilesTests")
                 REQUIRE(expected_res_strs == actual_res_strs);
             }
         }        
+    }
+}
+
+TEST_CASE("GoInDiretionWhilePossible")
+{
+    SECTION("Test_01")
+    {
+        const std::string pos_str = "8/8/8/3Q4/8/8/8/8 w KQkq - 0 1";
+        const auto pos = Chess::IO::FENStringToState(pos_str);
+        Board board{pos};
     }
 }

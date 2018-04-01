@@ -42,7 +42,7 @@ namespace Chess
     
     std::pair<TPositions, TPositions> CHESSLIB_API GetDiagonals(const TPosition& i_position);
 
-    TPositions GoInDiretionWhilePossible(
+    TPositions CHESSLIB_API GoInDiretionWhilePossible(
         const TPosition& i_from, const TPosition& i_direction, 
         const Chess::Board& i_board, EColor i_color);
 }
