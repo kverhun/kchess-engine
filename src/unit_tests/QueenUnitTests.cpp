@@ -54,11 +54,11 @@ TEST_CASE("QueenEmptyBoard")
         for (const auto& test_case : positions_to_test)
         {
             const std::string fen_string = test_case.first.first;
-            const auto rook_pos = PositionFromString(test_case.first.second);
+            const auto queen_pos = PositionFromString(test_case.first.second);
             Board board{IO::FENStringToState(fen_string)};
-            const auto& rook = board.GetPiece(rook_pos)->get();
-            const auto rook_move_targets = rook.GetPossibleMoveTargets(rook_pos, board);
-            REQUIRE(test_case.second == rook_move_targets.size());
+            const auto& queen = board.GetPiece(queen_pos)->get();
+            const auto queen_move_targets = queen.GetPossibleMoveTargets(queen_pos, board);
+            REQUIRE(test_case.second == queen_move_targets.size());
         }
     }
 }
