@@ -61,4 +61,23 @@ TEST_CASE("QueenEmptyBoard")
             REQUIRE(test_case.second == queen_move_targets.size());
         }
     }
+
+    SECTION("TestCapture")
+    {
+        const std::string pos_str = "rnbqkbnr/pppppppQ/8/8/8/8/PPPPPPPP/RNB1KBNR w KQkq - 0 1";
+        Board board{IO::FENStringToState(pos_str)};
+        const auto queen_pos = PositionFromString("h7");
+        const auto& queen = board.GetPiece(queen_pos)->get();
+        const auto queen_targets = queen.GetPossibleMoveTargets(queen_pos, board);
+        REQUIRE(11 == queen_targets.size());
+
+        const std::string should_be_target = "g7";
+        const std::string should_not_be_target = "f7";
+
+        const auto g7_it = std::find(queen_targets.begin(), queen_targets.end(), PositionFromString(should_be_target));
+        REQUIRE(g7_it != queen_targets.end());
+
+        const auto f7_it = std::find(queen_targets.begin(), queen_targets.end(), PositionFromString(should_not_be_target));
+        REQUIRE(f7_it == queen_targets.end());
+    }
 }
