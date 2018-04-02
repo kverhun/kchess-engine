@@ -24,48 +24,13 @@ namespace Chess
     {
         std::vector<TPosition> targets;
 
-        auto check_and_append_pos = [&](const TPosition& i_pos) -> bool
-        {
-            if (!IsPositionOccupied(i_board, i_pos, GetColor()))
-            {
-                targets.push_back(i_pos);
-                return true;
-            }   
-            else
-                return false;
-        };
+        std::set<TPosition> directions = {
+            TPosition{1, 0}, TPosition{0, 1}, TPosition{-1, 0}, TPosition{0, -1},
+            TPosition{1, 1}, TPosition{1, -1}, TPosition{-1, 1}, TPosition{-1, -1}};
 
-        for (int i = i_from.first - 1; i >= 0; --i)
+        for (const auto direction : directions)
         {
-            if (!check_and_append_pos({i, i_from.second}))
-                break;
-        }
-
-        for (int i = i_from.first + 1; i <= 7; ++i)
-        {
-            if (!check_and_append_pos({i, i_from.second}))
-                break;
-        }
-
-        for (int j = i_from.second - 1; j >= 0; --j)
-        {
-            if (!check_and_append_pos({i_from.first, j}))
-                break;
-        }
-
-        for (int j = i_from.second + 1; j <= 7; ++j)
-        {
-            if (!check_and_append_pos({i_from.first, j}))
-                break;
-        }
-
-        std::set<TPosition> shift_diags = {
-            TPosition{1,1}, TPosition{1,-1}, TPosition{-1,1}, TPosition{-1,-1}
-        };
-
-        for (const auto shift_diag : shift_diags)
-        {
-            const auto positions = GoInDiretionWhilePossible(i_from, shift_diag, i_board, GetColor());
+            const auto positions = GoInDiretionWhilePossible(i_from, direction, i_board, GetColor());
             for (const auto& pos : positions)
                 targets.push_back(pos);
         }
