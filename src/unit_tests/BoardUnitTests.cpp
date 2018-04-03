@@ -81,6 +81,7 @@ TEST_CASE("ShouldReturnPieceOnPosition")
     }
 
 }
+#include <iostream>
 
 TEST_CASE("GetAllAvailableMoves")
 {
@@ -94,4 +95,15 @@ TEST_CASE("GetAllAvailableMoves")
         const auto moves_black = board.GetAllPossibleMoves(EColor::Black);
         REQUIRE(moves_black.empty());
     }
+
+    SECTION("StartPosition")
+    {
+        Board board{GetInitialPosition()};
+        const auto white_moves = board.GetAllPossibleMoves(EColor::White);
+        REQUIRE(20 == white_moves.size());
+
+        const auto black_moves = board.GetAllPossibleMoves(EColor::Black);
+        REQUIRE(20 == black_moves.size());
+    }
+
 }
