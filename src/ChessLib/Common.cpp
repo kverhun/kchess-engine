@@ -139,6 +139,7 @@ bool Chess::IsCheck(const Board& i_board, const EColor& i_color)
 {
     const EColor opp_color = i_color == EColor::White ? EColor::Black : EColor::White;
     const auto opp_moves = i_board.GetAllPossibleMoves(opp_color);
+    
     for (const auto& opp_move : opp_moves)
     {
         const auto piece_on_target = i_board.GetPiece(opp_move.m_to);
