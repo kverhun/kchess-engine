@@ -81,7 +81,6 @@ TEST_CASE("ShouldReturnPieceOnPosition")
     }
 
 }
-#include <iostream>
 
 TEST_CASE("GetAllAvailableMoves")
 {
