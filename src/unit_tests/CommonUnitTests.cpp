@@ -129,3 +129,13 @@ TEST_CASE("GoInDiretionWhilePossible")
         REQUIRE(3 == res.size());
     }
 }
+
+TEST_CASE("DetectCheck")
+{
+    SECTION("StartPosition")
+    {
+        Board board{GetInitialPosition()};
+        REQUIRE(Chess::IsCheck(board, EColor::White) == false);
+        REQUIRE(Chess::IsCheck(board, EColor::Black) == false);
+    }
+}

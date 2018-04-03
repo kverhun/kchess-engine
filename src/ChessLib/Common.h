@@ -45,4 +45,6 @@ namespace Chess
     TPositions CHESSLIB_API GoInDiretionWhilePossible(
         const TPosition& i_from, const TPosition& i_direction, 
         const Chess::Board& i_board, EColor i_color);
+
+    bool CHESSLIB_API IsCheck(const Board& i_board, const EColor& i_color);
 }

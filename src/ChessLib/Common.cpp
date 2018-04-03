@@ -135,3 +135,7 @@ TPositions Chess::GoInDiretionWhilePossible(
     return res;
 }
 
+bool Chess::IsCheck(const Board& i_board, const EColor& i_color)
+{
+    return false;
+}
