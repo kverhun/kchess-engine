@@ -146,4 +146,12 @@ TEST_CASE("DetectCheck")
         REQUIRE(IsCheck(board, EColor::Black) == true);
         REQUIRE(IsCheck(board, EColor::White) == false);
     }
+
+    SECTION("DetectCheck_02")
+    {
+        const std::string pos_str = "8/8/8/3Q4/8/8/3p4/3k4 w KQkq - 0 1";
+        Board board{IO::FENStringToState(pos_str)};
+        REQUIRE(IsCheck(board, EColor::Black) == false);
+        REQUIRE(IsCheck(board, EColor::White) == false);
+    }
 }
