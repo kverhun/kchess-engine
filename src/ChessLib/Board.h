@@ -36,6 +36,8 @@ namespace Chess
         PieceOpt GetPiece(const TPosition& i_position) const;
 
         std::vector<Move> GetAllPossibleMoves(const EColor& i_color) const;
+
+        TState GetState() const;
     private:
         std::map<TPosition, std::unique_ptr<const Piece>> m_board_state;
     };

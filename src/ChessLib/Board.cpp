@@ -101,4 +101,14 @@ namespace Chess
 
         return res;
     }
+
+    TState Board::GetState() const
+    {
+        TState state;
+        for (const auto& el : m_board_state)
+        {
+            state[el.first] = el.second->GetString().front();
+        }
+        return state;
+    }
 }
