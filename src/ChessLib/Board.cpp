@@ -81,4 +81,24 @@ namespace Chess
         else
             return std::nullopt;
     }
+
+    std::vector<Move> Board::GetAllPossibleMoves(const EColor& i_color) const
+    {
+        std::vector<Move> res;
+
+        for (const auto& el : m_board_state)
+        {
+            if (el.second->GetColor() == i_color)
+            {
+                const auto targets = el.second->GetPossibleMoveTargets(el.first, *this);
+                std::transform(targets.begin(), targets.end(), std::back_inserter(res),
+                    [&](const TPosition& i_pos)
+                    {
+                        return Move{el.first, i_pos};
+                    });
+            }
+        }
+
+        return res;
+    }
 }
