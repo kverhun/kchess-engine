@@ -1,6 +1,7 @@
 #include <catch.hpp>
 
 #include <ChessLib/Board.h>
+#include <ChessLib/ImportExportUtils.h>
 
 using namespace Chess;
 
@@ -77,6 +78,32 @@ TEST_CASE("ShouldReturnPieceOnPosition")
                 const auto piece_opt = board.GetPiece(pos);
                 REQUIRE(piece_opt.operator bool());
             }
+    }
+
+}
+#include <iostream>
+
+TEST_CASE("GetAllAvailableMoves")
+{
+    SECTION("EmptyBoard")
+    {
+        Chess::Board board{IO::FENStringToState("8/8/8/8/8/8/8/8 w KQkq - 0 1")};
+        
+        const auto moves_white = board.GetAllPossibleMoves(EColor::White);
+        REQUIRE(moves_white.empty());
+
+        const auto moves_black = board.GetAllPossibleMoves(EColor::Black);
+        REQUIRE(moves_black.empty());
+    }
+
+    SECTION("StartPosition")
+    {
+        Board board{GetInitialPosition()};
+        const auto white_moves = board.GetAllPossibleMoves(EColor::White);
+        REQUIRE(20 == white_moves.size());
+
+        const auto black_moves = board.GetAllPossibleMoves(EColor::Black);
+        REQUIRE(20 == black_moves.size());
     }
 
 }

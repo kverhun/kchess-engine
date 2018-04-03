@@ -31,7 +31,8 @@ namespace Chess
             {
                 if (i == ci && j == cj)
                     continue;
-                if (IsPositionOccupied(i_board, {i,j}, GetColor()))
+                if (IsPositionOccupied(i_board, {i,j}, GetColor()) 
+                    || !IsPositionOnBoard({i,j}))
                     continue;
                 targets.emplace_back(i, j);
             }
