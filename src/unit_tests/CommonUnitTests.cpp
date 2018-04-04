@@ -155,3 +155,17 @@ TEST_CASE("DetectCheck")
         REQUIRE(IsCheck(board, EColor::White) == false);
     }
 }
+
+TEST_CASE("ShouldNotAllowMoveWhichResultsInCheck")
+{
+    SECTION("01")
+    {
+        const std::string pos_str = "8/8/8/3Q4/8/8/8/3k4 w KQkq - 0 1";
+        Board board{IO::FENStringToState(pos_str)};
+        const auto moves = GetPossibleMoves(board, EColor::Black);
+        REQUIRE(4 == moves.size());
+
+        const auto moves_all = board.GetAllPossibleMoves(EColor::Black);
+        REQUIRE(5 == moves_all.size());
+    }
+}
