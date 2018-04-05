@@ -2,6 +2,8 @@
 
 #include "Board.h"
 
+#include <algorithm>
+
 using namespace Chess;
 
 namespace
@@ -135,3 +137,38 @@ TPositions Chess::GoInDiretionWhilePossible(
     return res;
 }
 
+bool Chess::IsCheck(const Board& i_board, const EColor& i_color)
+{
+    const EColor opp_color = i_color == EColor::White ? EColor::Black : EColor::White;
+    const auto opp_moves = i_board.GetAllPossibleMoves(opp_color);
+    
+    for (const auto& opp_move : opp_moves)
+    {
+        const auto piece_on_target = i_board.GetPiece(opp_move.m_to);
+        if (piece_on_target != std::nullopt)
+        {
+            const Piece& piece = piece_on_target->get();
+            if (piece.GetColor() == i_color && 
+                // not very nice to check by string...
+                (piece.GetString() == "k" || piece.GetString() == "K"))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+std::vector<Move> Chess::GetPossibleMoves(const Board& i_board, const EColor& i_color)
+{
+    auto possible_moves = i_board.GetAllPossibleMoves(i_color);
+    possible_moves.erase(std::remove_if(possible_moves.begin(), possible_moves.end(), 
+        [&](const Move& i_move) 
+        {
+            Board board_copy{i_board.GetState()};
+            board_copy.MakeMove(i_move);
+            return IsCheck(board_copy, i_color);
+        }), 
+        possible_moves.end());
+    return possible_moves;
+}

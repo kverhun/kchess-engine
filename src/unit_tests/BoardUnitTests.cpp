@@ -106,3 +106,25 @@ TEST_CASE("GetAllAvailableMoves")
     }
 
 }
+
+TEST_CASE("StateConversion")
+{
+    SECTION("01")
+    {
+        const std::set<std::string> test_positions = {
+            "rnbqkbnr/pppppppQ/8/8/8/8/PPPPPPPP/RNB1KBNR w KQkq - 0 1",
+            "8/8/8/8/8/8/8/8 w KQkq - 0 1",
+            "8/8/8/3Q4/8/8/8/3k4 w KQkq - 0 1",
+            "rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq c6 0 2",
+            "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2"
+        };
+        
+        for (const auto& pos_str : test_positions)
+        {
+            const auto state = IO::FENStringToState(pos_str);
+            Board board{state};
+            const auto state_from_board = board.GetState();
+            REQUIRE(state == state_from_board);
+        }
+    }
+}
