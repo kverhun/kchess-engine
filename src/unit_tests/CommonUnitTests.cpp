@@ -168,4 +168,12 @@ TEST_CASE("ShouldNotAllowMoveWhichResultsInCheck")
         const auto moves_all = board.GetAllPossibleMoves(EColor::Black);
         REQUIRE(5 == moves_all.size());
     }
+
+    SECTION("ScholarsMate")
+    {
+        const std::string pos_str = "r1bqkbnr/ppp2Qpp/2np4/4p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4";
+        Board board{IO::FENStringToState(pos_str)};
+        const auto moves_black = GetPossibleMoves(board, EColor::Black);
+        REQUIRE(moves_black.empty());
+    }
 }
