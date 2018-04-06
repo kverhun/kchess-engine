@@ -41,6 +41,11 @@ namespace Chess
             return EColor::Black;
     }
 
+    size_t Game::GetCurrentMoveNumber() const
+    {
+        return m_current_move_number;
+    }
+
     bool Game::MakeMoveIfAllowed(const Move& i_move)
     {
         if (_IsMoveAllowed(m_board, i_move, GetColorToMove()))

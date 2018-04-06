@@ -15,6 +15,7 @@ namespace Chess
         bool MakeMoveIfAllowed(const Move& i_move);
 
         EColor GetColorToMove() const;
+        size_t GetCurrentMoveNumber() const;
 
     private:
         Board m_board;
