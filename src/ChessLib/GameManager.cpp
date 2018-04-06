@@ -39,17 +39,26 @@ namespace Chess
                 if (!success)
                     std::cout << "Incorrect move" << std::endl;
             } while (!success);
-            std::cout << "\n\n" << game.GetBoard().ToString();
+            
             const auto possible_next_moves = GetPossibleMoves(game.GetBoard(), game.GetColorToMove());
             if (possible_next_moves.empty())
             {
                 if (game.GetColorToMove() == EColor::White)
+                {
+                    std::cout << "\n\n" << game.GetBoard().ToString();   
                     return EGameResult::BlackWin;
+                }
                 else
+                {
+                    std::cout << "\n\n" << game.GetBoard().ToString();
                     return EGameResult::WhiteWin;
+                }
             }
             if (game.GetCurrentMoveNumber() >= g_max_move_number)
+            {
+                std::cout << "\n\n" << game.GetBoard().ToString();
                 return EGameResult::Draw;
+            }
         } while (!end_game);
     }
 }
