@@ -10,6 +10,8 @@ add_library(
                     Board.cpp
                     Game.h
                     Game.cpp
+                    GameManager.h
+                    GameManager.cpp
                     IPlayer.h
                     Pieces.h
                     Pieces.cpp

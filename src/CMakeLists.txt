@@ -34,4 +34,5 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(ChessLib)
 add_subdirectory(app)
+add_subdirectory(random_exp_app)
 add_subdirectory(unit_tests)
