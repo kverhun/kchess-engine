@@ -31,9 +31,11 @@ namespace
         {
             const auto possible_moves = GetPossibleMoves(i_board, m_color);
             
-            std::default_random_engine generator(0);
-            std::uniform_int_distribution<int> random(0, possible_moves.size());
-            const auto random_idx = random(generator);
+            std::random_device rd; 
+            std::mt19937 rng(rd());
+            std::uniform_int_distribution<int> uni(0, possible_moves.size()); 
+
+            const auto random_idx = uni(rng);
 
             return possible_moves[random_idx];
         }
