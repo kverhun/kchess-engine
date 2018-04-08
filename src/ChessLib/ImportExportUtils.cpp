@@ -80,5 +80,32 @@ TState Chess::IO::FENStringToState(const std::string& i_fen_string)
 
 std::string Chess::IO::StateToFENString(const TState& i_state)
 {
-    return "";
+    // example:
+    // "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    std::vector<std::string> rank_strs(8);
+    for (int i = 0; i < 8; ++i)
+    {
+        int cur_empty = 0;
+        for (int j = 0; j < 8; ++j)
+        {
+            auto pos_it = i_state.find(TPosition{i, j});
+            if (pos_it == i_state.end())
+                ++cur_empty;
+            else
+            {
+                if (cur_empty != 0)
+                {
+                    rank_strs[i].push_back(std::to_string(cur_empty).front());
+                    cur_empty = 0;
+                }
+                rank_strs[i].push_back(pos_it->second);
+            }
+        }
+    }
+    
+    std::string res = "";
+    for (const auto& str : rank_strs)
+        std::copy(str.begin(), str.end(), res.end());
+
+    return res;
 }
