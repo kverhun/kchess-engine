@@ -77,3 +77,8 @@ TState Chess::IO::FENStringToState(const std::string& i_fen_string)
 
     return state;
 }
+
+std::string Chess::IO::StateToFENString(const TState& i_state)
+{
+    return "";
+}
