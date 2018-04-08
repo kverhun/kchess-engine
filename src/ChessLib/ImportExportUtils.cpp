@@ -101,11 +101,17 @@ std::string Chess::IO::StateToFENString(const TState& i_state)
                 rank_strs[i].push_back(pos_it->second);
             }
         }
+        if (cur_empty > 0)
+            rank_strs[i].push_back(std::to_string(cur_empty).front());
     }
     
     std::string res = "";
-    for (const auto& str : rank_strs)
-        std::copy(str.begin(), str.end(), res.end());
+    for (size_t i = 0; i < rank_strs.size(); ++i)
+    {
+        res.append(rank_strs[i]);
+        if (i + 1 != rank_strs.size())
+            res.append("/");
+    }
 
     return res;
 }

@@ -51,3 +51,14 @@ TEST_CASE("ParseFENTest")
         REQUIRE(state.at(TPosition{6,3}) == 'p');
     }
 }
+
+TEST_CASE("PositionToFENTest")
+{
+    SECTION("TestEmpty")
+    {
+        TState state;
+        const auto fen_string = IO::StateToFENString(state);
+        
+        REQUIRE("8/8/8/8/8/8/8/8" == fen_string);
+    }
+}
