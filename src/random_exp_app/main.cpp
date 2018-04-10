@@ -2,6 +2,8 @@
 #include <ChessLib/IPlayer.h>
 #include <ChessLib/GameManager.h>
 
+#include <fstream>
+#include <functional>
 #include <iostream>
 #include <random>
 
@@ -49,8 +51,21 @@ int main(int i_argc, char** ip_argv)
 {
     _RandomMovePlayer player_white{EColor::White};
     _RandomMovePlayer player_black(EColor::Black);
+    
+    std::unique_ptr<std::ostream> p_log_stream;
+    auto verbose_stream = [&]() -> GameManager::TOptionalStream
+    {
+        if (i_argc > 1)
+        {
+            const std::string log_folder = ip_argv[1];
+            p_log_stream = std::make_unique<std::ofstream>(log_folder + "/log.txt");
+            return std::make_optional(std::ref(*p_log_stream.get()));
+        }
+        else
+            return std::nullopt;
+    }();
 
-    const auto game_result = GameManager::PerformGame(player_white, player_black, std::ref(std::cout));
+    const auto game_result = GameManager::PerformGame(player_white, player_black, std::ref(std::cout), verbose_stream);
     
     std::cout << "Result: " << _GameResultToString(game_result);
 
