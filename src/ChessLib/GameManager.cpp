@@ -14,7 +14,8 @@ namespace Chess
 {
     GameManager::EGameResult GameManager::PerformGame(
         IPlayer& i_player_white, IPlayer& i_player_black,
-        GameManager::TOptionalStream i_log)
+        GameManager::TOptionalStream i_log_summary, 
+        GameManager::TOptionalStream i_log_verbose)
     {
         Chess::Game game;
 
@@ -35,13 +36,21 @@ namespace Chess
             {
                 auto& current_player = get_current_player(game.GetColorToMove());
                 const auto move = current_player.GetMove(game.GetBoard());
-                success = game.MakeMoveIfAllowed(move);
-                if (!success && i_log)
+                
+                if (i_log_verbose)
                 {
-                    i_log->get() << "Incorrect move" << std::endl;
+                    i_log_verbose->get() 
+                        << IO::StateToFENString(game.GetBoard().GetState()) << '\n'
+                        << PositionToString(move.m_from) << ' ' << PositionToString(move.m_to) << '\n';
+                }
+                
+                success = game.MakeMoveIfAllowed(move);
+                if (!success && i_log_summary)
+                {
+                    i_log_summary->get() << "Incorrect move" << std::endl;
                     const auto position_fen_str = IO::StateToFENString(game.GetBoard().GetState());
                     const auto move_str = PositionToString(move.m_from) + " " + PositionToString(move.m_to);
-                    i_log->get() << "\n=====================\n" 
+                    i_log_summary->get() << "\n=====================\n" 
                               << "Position:\n" << position_fen_str
                               << "\nMove: " << move_str << "\n";
                 }
@@ -52,21 +61,21 @@ namespace Chess
             {
                 if (game.GetColorToMove() == EColor::White)
                 {
-                    if (i_log)
-                        i_log->get() << "\n\n" << game.GetBoard().ToString();   
+                    if (i_log_summary)
+                        i_log_summary->get() << "\n\n" << game.GetBoard().ToString();   
                     return EGameResult::BlackWin;
                 }
                 else
                 {
-                    if (i_log)
-                        i_log->get() << "\n\n" << game.GetBoard().ToString();
+                    if (i_log_summary)
+                        i_log_summary->get() << "\n\n" << game.GetBoard().ToString();
                     return EGameResult::WhiteWin;
                 }
             }
             if (game.GetCurrentMoveNumber() >= g_max_move_number)
             {
-                if (i_log)
-                    i_log->get() << "\n\n" << game.GetBoard().ToString();
+                if (i_log_summary)
+                    i_log_summary->get() << "\n\n" << game.GetBoard().ToString();
                 return EGameResult::Draw;
             }
         } while (!end_game);
