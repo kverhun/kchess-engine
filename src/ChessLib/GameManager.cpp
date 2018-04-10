@@ -3,6 +3,7 @@
 #include "Common.h"
 #include "Game.h"
 #include "IPlayer.h"
+#include "ImportExportUtils.h"
 
 #include <iostream>
 
@@ -37,7 +38,14 @@ namespace Chess
                 const auto move = current_player.GetMove(game.GetBoard());
                 success = game.MakeMoveIfAllowed(move);
                 if (!success)
+                {
                     std::cout << "Incorrect move" << std::endl;
+                    const auto position_fen_str = IO::StateToFENString(game.GetBoard().GetState());
+                    const auto move_str = PositionToString(move.m_from) + " " + PositionToString(move.m_to);
+                    std::cout << "\n=====================\n" 
+                              << "Position:\n" << position_fen_str
+                              << "\nMove: " << move_str << "\n";
+                }
             } while (!success);
             
             const auto possible_next_moves = GetPossibleMoves(game.GetBoard(), game.GetColorToMove());

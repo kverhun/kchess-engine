@@ -33,7 +33,7 @@ namespace
             
             std::random_device rd; 
             std::mt19937 rng(rd());
-            std::uniform_int_distribution<int> uni(0, possible_moves.size()); 
+            std::uniform_int_distribution<int> uni(0, possible_moves.size() - 1); 
 
             const auto random_idx = uni(rng);
 
