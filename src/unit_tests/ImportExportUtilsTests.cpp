@@ -51,3 +51,28 @@ TEST_CASE("ParseFENTest")
         REQUIRE(state.at(TPosition{6,3}) == 'p');
     }
 }
+
+TEST_CASE("PositionToFENTest")
+{
+    SECTION("TestEmpty")
+    {
+        TState state;
+        const auto fen_string = IO::StateToFENString(state);
+        
+        REQUIRE("8/8/8/8/8/8/8/8 w KQkq - 0 1" == fen_string);
+    }
+
+    SECTION("TestImportExportEquality")
+    {
+        std::set<std::string> test_fen_strs = {
+            "8/8/8/3Q4/8/8/8/8 w KQkq - 0 1"
+        };
+
+        for (const auto& test_fen_str : test_fen_strs)
+        {
+            const auto state = FENStringToState(test_fen_str);
+            const auto fen_str_exported = StateToFENString(state);
+            REQUIRE(fen_str_exported == test_fen_str);
+        }
+    }
+}
