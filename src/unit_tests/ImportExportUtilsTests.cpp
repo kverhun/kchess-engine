@@ -59,6 +59,6 @@ TEST_CASE("PositionToFENTest")
         TState state;
         const auto fen_string = IO::StateToFENString(state);
         
-        REQUIRE("8/8/8/8/8/8/8/8" == fen_string);
+        REQUIRE("8/8/8/8/8/8/8/8 w KQkq - 0 1" == fen_string);
     }
 }

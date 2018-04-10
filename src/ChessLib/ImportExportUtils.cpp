@@ -113,5 +113,7 @@ std::string Chess::IO::StateToFENString(const TState& i_state)
             res.append("/");
     }
 
+    res.append(" w KQkq - 0 1");
+
     return res;
 }
