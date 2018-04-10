@@ -50,7 +50,7 @@ int main(int i_argc, char** ip_argv)
     _RandomMovePlayer player_white{EColor::White};
     _RandomMovePlayer player_black(EColor::Black);
 
-    const auto game_result = GameManager::PerformGame(player_white, player_black);
+    const auto game_result = GameManager::PerformGame(player_white, player_black, std::nullopt);
     
     std::cout << "Result: " << _GameResultToString(game_result);
 

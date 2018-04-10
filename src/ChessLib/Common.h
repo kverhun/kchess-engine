@@ -6,6 +6,18 @@
 #include <vector>
 #include <utility>
 
+#ifdef __APPLE__
+#include <experimental/optional>
+namespace std
+{
+    using experimental::optional;
+    using experimental::nullopt;
+    using experimental::make_optional;
+}
+#else
+#include <optional>
+#endif
+
 namespace Chess
 {
     class Board;

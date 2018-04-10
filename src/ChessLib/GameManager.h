@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Common.h"
+
+#include <iostream>
+
 namespace Chess
 {
     class IPlayer;
@@ -15,6 +19,7 @@ namespace Chess
         };
 
         static EGameResult PerformGame(
-            IPlayer& i_player_white, IPlayer& i_player_black);
+            IPlayer& i_player_white, IPlayer& i_player_black,
+            std::optional<std::ostream> i_log);
     };
 }

@@ -15,7 +15,8 @@ namespace
 namespace Chess
 {
     GameManager::EGameResult GameManager::PerformGame(
-        IPlayer& i_player_white, IPlayer& i_player_black)
+        IPlayer& i_player_white, IPlayer& i_player_black,
+        std::optional<std::ostream> i_log)
     {
         Chess::Game game;
 
