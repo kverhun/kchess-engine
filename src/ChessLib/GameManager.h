@@ -18,8 +18,9 @@ namespace Chess
             Draw
         };
 
+        using TOptionalStream = std::optional<std::reference_wrapper<std::ostream>>;
         static EGameResult PerformGame(
             IPlayer& i_player_white, IPlayer& i_player_black,
-            std::optional<std::ostream> i_log);
+            TOptionalStream i_log);
     };
 }
