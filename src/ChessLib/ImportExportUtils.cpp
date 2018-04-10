@@ -106,10 +106,10 @@ std::string Chess::IO::StateToFENString(const TState& i_state)
     }
     
     std::string res = "";
-    for (size_t i = 0; i < rank_strs.size(); ++i)
+    for (int i = rank_strs.size(); i > 0; --i)
     {
-        res.append(rank_strs[i]);
-        if (i + 1 != rank_strs.size())
+        res.append(rank_strs[i-1]);
+        if (i != 1)
             res.append("/");
     }
 
