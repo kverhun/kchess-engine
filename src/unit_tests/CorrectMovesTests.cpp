@@ -59,4 +59,13 @@ TEST_CASE("TestIncorrectMoves")
         const std::set<Move> actual_moves(allowed_moves.begin(), allowed_moves.end());
         REQUIRE(expected_moves == actual_moves);
     }
+
+    SECTION("Test02")
+    {
+        const auto fen_string = "3B3k/5K2/3R1P1P/8/4P3/8/8/5B2 w KQkq - 0 1";
+        Board board{FENStringToState(fen_string)};
+        const auto allowed_moves = GetPossibleMoves(board, EColor::White);
+        auto incorrect_move_it = std::find(allowed_moves.begin(), allowed_moves.end(), Move{PositionFromString("f6"), PositionFromString("f7")});
+        REQUIRE(allowed_moves.end() == incorrect_move_it); 
+    }
 }

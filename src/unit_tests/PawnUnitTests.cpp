@@ -76,4 +76,15 @@ TEST_CASE("Pawn_ShouldReturnCorrectMoveTargets")
             .GetPossibleMoveTargets(f3, board);
         REQUIRE_FALSE(_Contains(f3_targets, e4));
     }
+
+    SECTION("ShouldNotMoveToOccupiedPiece")
+    {
+        TState state{
+            {PositionFromString("f6"), 'P'},
+            {PositionFromString("f7"), 'K'}
+        };
+        Board board{state};
+        const auto allowed_moves = GetPossibleMoves(board, EColor::White);
+        REQUIRE(7 == allowed_moves.size());
+    }
 }
