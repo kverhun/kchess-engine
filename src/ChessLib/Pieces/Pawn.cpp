@@ -24,7 +24,8 @@ namespace Chess
         const int move_direction = GetColor() == EColor::White ? +1 : -1;
         const int start_position = GetColor() == EColor::White ? 1 : 6;
 
-        targets.emplace_back(i_from.first + move_direction, i_from.second);
+        if (i_board.GetPiece({i_from.first + move_direction, i_from.second}) == std::nullopt)
+            targets.emplace_back(i_from.first + move_direction, i_from.second);
 
         if (i_from.first == start_position)
             targets.emplace_back(i_from.first + 2 * move_direction, i_from.second);
