@@ -3,8 +3,7 @@
 #include "Common.h"
 #include "Game.h"
 #include "IPlayer.h"
-
-#include <iostream>
+#include "ImportExportUtils.h"
 
 namespace 
 {
@@ -14,7 +13,9 @@ namespace
 namespace Chess
 {
     GameManager::EGameResult GameManager::PerformGame(
-        IPlayer& i_player_white, IPlayer& i_player_black)
+        IPlayer& i_player_white, IPlayer& i_player_black,
+        GameManager::TOptionalStream i_log_summary, 
+        GameManager::TOptionalStream i_log_verbose)
     {
         Chess::Game game;
 
@@ -27,38 +28,55 @@ namespace Chess
         };
 
         bool end_game = false;
-
-        do
+        EGameResult game_result = [&]()
         {
-            bool success;
-            do
+            while(true)
             {
-                auto& current_player = get_current_player(game.GetColorToMove());
-                const auto move = current_player.GetMove(game.GetBoard());
-                success = game.MakeMoveIfAllowed(move);
-                if (!success)
-                    std::cout << "Incorrect move" << std::endl;
-            } while (!success);
+                bool success = true;
+                do
+                {
+                    auto& current_player = get_current_player(game.GetColorToMove());
+                    const auto move = current_player.GetMove(game.GetBoard());
+                    
+                    if (i_log_verbose)
+                    {
+                        i_log_verbose->get() 
+                            << IO::StateToFENString(game.GetBoard().GetState()) << '\n'
+                            << PositionToString(move.m_from) << ' ' << PositionToString(move.m_to) << '\n';
+                    }
+                    
+                    success = game.MakeMoveIfAllowed(move);
+                    if (!success && i_log_summary)
+                    {
+                        const auto position_fen_str = IO::StateToFENString(game.GetBoard().GetState());
+                        const auto move_str = PositionToString(move.m_from) + " " + PositionToString(move.m_to);
+                        i_log_summary->get() << "\n=====================\n" 
+                                << "Incorrect move:\n"
+                                << "Position:\n" << position_fen_str
+                                << "\nMove: " << move_str << "\n";
+                    }
+                } while (!success);
+                
+                const auto possible_next_moves = GetPossibleMoves(game.GetBoard(), game.GetColorToMove());
+                if (possible_next_moves.empty())
+                {
+                    if (game.GetColorToMove() == EColor::White)
+                        return EGameResult::BlackWin;
+                    else
+                        return EGameResult::WhiteWin;
+                }
+                if (game.GetCurrentMoveNumber() >= g_max_move_number)
+                    return EGameResult::Draw;
+            }
             
-            const auto possible_next_moves = GetPossibleMoves(game.GetBoard(), game.GetColorToMove());
-            if (possible_next_moves.empty())
-            {
-                if (game.GetColorToMove() == EColor::White)
-                {
-                    std::cout << "\n\n" << game.GetBoard().ToString();   
-                    return EGameResult::BlackWin;
-                }
-                else
-                {
-                    std::cout << "\n\n" << game.GetBoard().ToString();
-                    return EGameResult::WhiteWin;
-                }
-            }
-            if (game.GetCurrentMoveNumber() >= g_max_move_number)
-            {
-                std::cout << "\n\n" << game.GetBoard().ToString();
-                return EGameResult::Draw;
-            }
-        } while (!end_game);
+        }();
+        if (i_log_summary)
+            i_log_summary->get() << "\n\n" << game.GetBoard().ToString();
+        if (i_log_verbose)
+        {
+            i_log_verbose->get() << IO::StateToFENString(game.GetBoard().GetState()) << '\n';
+            i_log_verbose->get() << "\n\n" << game.GetBoard().ToString();
+        }
+        return game_result;
     }
 }

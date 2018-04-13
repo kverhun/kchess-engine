@@ -6,6 +6,18 @@
 #include <vector>
 #include <utility>
 
+#ifdef __APPLE__
+#include <experimental/optional>
+namespace std
+{
+    using experimental::optional;
+    using experimental::nullopt;
+    using experimental::make_optional;
+}
+#else
+#include <optional>
+#endif
+
 namespace Chess
 {
     class Board;
@@ -26,6 +38,19 @@ namespace Chess
     {
         TPosition m_from;
         TPosition m_to;
+        bool operator < (const Move& i_other) const
+        {
+            if (m_from < i_other.m_from)
+                return true;
+            else if (m_to < i_other.m_to)
+                return true;
+            else
+                return false;
+        }
+        bool operator == (const Move& i_other) const 
+        {
+            return m_from == i_other.m_from && m_to == i_other.m_to;
+        }
     };
 
     bool IsPositionOnBoard(const TPosition& i_pos);

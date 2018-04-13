@@ -28,7 +28,7 @@ int main(int i_argc, char** ip_argv)
     PlayerCLI player_black;
 
     const auto game_result = Chess::GameManager::PerformGame(
-        player_white, player_black);
+        player_white, player_black, std::ref(std::cout));
 
     std::cout << "Result: " << _GameResultToString(game_result);
     

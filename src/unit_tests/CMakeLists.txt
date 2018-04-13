@@ -4,6 +4,7 @@ add_executable(
     app_unit_tests 
         app_unit_tests.cpp
         CommonUnitTests.cpp
+        CorrectMovesTests.cpp
         BoardUnitTests.cpp
         PieceUnitTests.cpp
         GameUnitTests.cpp
