@@ -69,10 +69,10 @@ int main(int i_argc, char** ip_argv)
     }();
 
     GameManager::GameInfo info;
-    const auto game_result = GameManager::PerformGame(player_white, player_black, std::ref(std::cout), std::nullopt, 
+    const auto game_result = GameManager::PerformGame(player_white, player_black, std::nullopt, std::nullopt, 
         std::make_optional((std::ref(info))));
     
-    std::cout << "Result: " << _GameResultToString(game_result);
+    std::cout << timestame_str << ", " << _GameResultToString(game_result) << ", " << info.m_moves.size() / 2 << '\n';
 
     if (i_argc > 1)
     {
