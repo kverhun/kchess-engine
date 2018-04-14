@@ -1,5 +1,6 @@
 #include <ChessLib/Common.h>
 #include <ChessLib/IPlayer.h>
+#include <ChessLib/ImportExportUtils.h>
 #include <ChessLib/GameManager.h>
 
 #include <fstream>
@@ -51,6 +52,8 @@ int main(int i_argc, char** ip_argv)
 {
     _RandomMovePlayer player_white{EColor::White};
     _RandomMovePlayer player_black(EColor::Black);
+
+    const auto timestame_str = std::to_string(std::time(nullptr));
     
     std::unique_ptr<std::ostream> p_log_stream;
     auto verbose_stream = [&]() -> GameManager::TOptionalStream
@@ -58,16 +61,30 @@ int main(int i_argc, char** ip_argv)
         if (i_argc > 1)
         {
             const std::string log_folder = ip_argv[1];
-            p_log_stream = std::make_unique<std::ofstream>(log_folder + "/log.txt");
+            p_log_stream = std::make_unique<std::ofstream>(log_folder + "/log" + timestame_str + ".txt");
             return std::make_optional(std::ref(*p_log_stream.get()));
         }
         else
             return std::nullopt;
     }();
 
-    const auto game_result = GameManager::PerformGame(player_white, player_black, std::ref(std::cout), verbose_stream);
+    GameManager::GameInfo info;
+    const auto game_result = GameManager::PerformGame(player_white, player_black, std::ref(std::cout), std::nullopt, 
+        std::make_optional((std::ref(info))));
     
     std::cout << "Result: " << _GameResultToString(game_result);
+
+    if (i_argc > 1)
+    {
+        const std::string log_folder = ip_argv[1];
+        auto log_stream = std::ofstream(log_folder + "/log" + timestame_str + ".txt");
+        log_stream << _GameResultToString(game_result);
+        for (const auto& state : info.m_states)
+            log_stream << IO::StateToFENString(state) << "\n";
+        log_stream << "\n";
+        for (const auto& move : info.m_moves)
+            log_stream << PositionToString(move.m_from) << ' ' << PositionToString(move.m_to) << '\n';
+    }
 
     return 0;
 }
