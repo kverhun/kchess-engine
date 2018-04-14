@@ -15,7 +15,8 @@ namespace Chess
     GameManager::EGameResult GameManager::PerformGame(
         IPlayer& i_player_white, IPlayer& i_player_black,
         GameManager::TOptionalStream i_log_summary, 
-        GameManager::TOptionalStream i_log_verbose)
+        GameManager::TOptionalStream i_log_verbose,
+        TOptionalGameInfo i_game_info)
     {
         Chess::Game game;
 
@@ -55,6 +56,11 @@ namespace Chess
                                 << "Position:\n" << position_fen_str
                                 << "\nMove: " << move_str << "\n";
                     }
+                    if (success && i_game_info)
+                    {
+                        i_game_info->get().m_moves.push_back(move);
+                        i_game_info->get().m_states.push_back(game.GetBoard().GetState());
+                    }
                 } while (!success);
                 
                 const auto possible_next_moves = GetPossibleMoves(game.GetBoard(), game.GetColorToMove());
@@ -77,6 +83,8 @@ namespace Chess
             i_log_verbose->get() << IO::StateToFENString(game.GetBoard().GetState()) << '\n';
             i_log_verbose->get() << "\n\n" << game.GetBoard().ToString();
         }
+        if (i_game_info)
+            i_game_info->get().m_result = game_result;
         return game_result;
     }
 }
