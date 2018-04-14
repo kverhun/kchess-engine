@@ -71,6 +71,8 @@ namespace Chess
                     else
                         return EGameResult::WhiteWin;
                 }
+                if (IsPositionDraw(game.GetBoard()))
+                    return EGameResult::Draw;
                 if (game.GetCurrentMoveNumber() >= g_max_move_number)
                     return EGameResult::Draw;
             }

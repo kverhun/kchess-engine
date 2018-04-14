@@ -172,3 +172,10 @@ std::vector<Move> Chess::GetPossibleMoves(const Board& i_board, const EColor& i_
         possible_moves.end());
     return possible_moves;
 }
+
+bool Chess::IsPositionDraw(const Board& i_board)
+{
+    if (i_board.GetState().size() == 2)
+        return true;
+    return false;
+}
