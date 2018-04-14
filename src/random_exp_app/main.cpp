@@ -3,6 +3,7 @@
 #include <ChessLib/ImportExportUtils.h>
 #include <ChessLib/GameManager.h>
 
+#include <chrono>
 #include <fstream>
 #include <functional>
 #include <iostream>
@@ -53,15 +54,16 @@ int main(int i_argc, char** ip_argv)
     _RandomMovePlayer player_white{EColor::White};
     _RandomMovePlayer player_black(EColor::Black);
 
-    const auto timestame_str = std::to_string(std::time(nullptr));
-    
+    const auto timestamp_str = std::to_string(std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::system_clock::now().time_since_epoch()).count());
+
     std::unique_ptr<std::ostream> p_log_stream;
     auto verbose_stream = [&]() -> GameManager::TOptionalStream
     {
         if (i_argc > 1)
         {
             const std::string log_folder = ip_argv[1];
-            p_log_stream = std::make_unique<std::ofstream>(log_folder + "/log" + timestame_str + ".txt");
+            p_log_stream = std::make_unique<std::ofstream>(log_folder + "/log" + timestamp_str + ".txt");
             return std::make_optional(std::ref(*p_log_stream.get()));
         }
         else
@@ -72,12 +74,12 @@ int main(int i_argc, char** ip_argv)
     const auto game_result = GameManager::PerformGame(player_white, player_black, std::nullopt, std::nullopt, 
         std::make_optional((std::ref(info))));
     
-    std::cout << timestame_str << ", " << _GameResultToString(game_result) << ", " << info.m_moves.size() / 2 << '\n';
+    std::cout << timestamp_str << ", " << _GameResultToString(game_result) << ", " << info.m_moves.size() / 2 << '\n';
 
     if (i_argc > 1)
     {
         const std::string log_folder = ip_argv[1];
-        auto log_stream = std::ofstream(log_folder + "/log" + timestame_str + ".txt");
+        auto log_stream = std::ofstream(log_folder + "/log" + timestamp_str + ".txt");
         log_stream << _GameResultToString(game_result);
         for (const auto& state : info.m_states)
             log_stream << IO::StateToFENString(state) << "\n";
