@@ -74,4 +74,6 @@ namespace Chess
     bool CHESSLIB_API IsCheck(const Board& i_board, const EColor& i_color);
 
     std::vector<Move> CHESSLIB_API GetPossibleMoves(const Board& i_board, const EColor& i_color);
+
+    bool CHESSLIB_API IsPositionDraw(const Board& i_board);
 }

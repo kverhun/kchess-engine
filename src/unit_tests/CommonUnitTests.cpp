@@ -177,3 +177,27 @@ TEST_CASE("ShouldNotAllowMoveWhichResultsInCheck")
         REQUIRE(moves_black.empty());
     }
 }
+
+TEST_CASE("ShouldDetectDrawPostiion")
+{
+    SECTION("01")
+    {
+        const std::string pos_str = "8/3k4/8/8/2K5/8/8/8  b KQkq - 0 4";
+        Board board{IO::FENStringToState(pos_str)};
+        REQUIRE(IsPositionDraw(board));
+    }
+
+    SECTION("FalsePositive")
+    {
+        std::set<std::string> nondraw_pos_strs = {
+            "8/3k4/8/8/2K5/8/8/Q7  b KQkq - 0 4",
+            "6q1/3k4/8/8/2K5/8/8/8  b KQkq - 0 4",
+            "8/3k4/8/8/2K5/2R5/8/8  b KQkq - 0 4"
+        };
+        for (const auto& nondraw_pos_str : nondraw_pos_strs)
+        {
+            Board board{IO::FENStringToState(nondraw_pos_str)};
+            REQUIRE_FALSE(IsPositionDraw(board));
+        }
+    }
+}
