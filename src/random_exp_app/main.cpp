@@ -86,6 +86,8 @@ int main(int i_argc, char** ip_argv)
         log_stream << "\n";
         for (const auto& move : info.m_moves)
             log_stream << PositionToString(move.m_from) << ' ' << PositionToString(move.m_to) << '\n';
+        log_stream << "\n";
+        log_stream << Board{info.m_states.back()}.ToString() << '\n';
     }
 
     return 0;
