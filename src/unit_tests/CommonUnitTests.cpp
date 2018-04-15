@@ -177,3 +177,13 @@ TEST_CASE("ShouldNotAllowMoveWhichResultsInCheck")
         REQUIRE(moves_black.empty());
     }
 }
+
+TEST_CASE("ShouldDetectDrawPostiion")
+{
+    SECTION("01")
+    {
+        const std::string pos_str = "8/3k4/8/8/2K5/8/8/8  b KQkq - 0 4";
+        Board board{IO::FENStringToState(pos_str)};
+        REQUIRE(IsPositionDraw(board));
+    }
+}
